@@ -1,6 +1,9 @@
 @import "./defaults/index";
 
+@import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
+
 .page-wrapper {
 	max-width: 100%;
 	margin: 0 auto;
+	font-family: "Quicksand", sans-serif;
 }

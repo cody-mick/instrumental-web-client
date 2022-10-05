@@ -1,9 +1,12 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import "./App.css";
+import "../styles/app.scss";
+import Router from "./components/utility/Router";
 
 function App() {
-	return <h1>hello world!</h1>;
+	return (
+		<div className="page-wrapper">
+			<Router />
+		</div>
+	);
 }
 
 export default App;
