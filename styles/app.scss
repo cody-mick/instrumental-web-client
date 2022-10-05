@@ -1,5 +1,8 @@
 @import "./defaults/index";
 
+@import "../src/components/common/inputs/inputs";
+@import "../src/components/common/nav/nav";
+
 @import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
 
 .page-wrapper {
