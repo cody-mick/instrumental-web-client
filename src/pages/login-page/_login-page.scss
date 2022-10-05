@@ -1,0 +1,14 @@
+.login-page {
+	@include flex(row, nowrap);
+
+	&__left-half {
+		height: 100vh;
+		width: 60%;
+	}
+
+	&__right-half {
+		height: 100vh;
+		width: 40%;
+		background-color: blue;
+	}
+}
