@@ -1,0 +1,58 @@
+.nav-bar-container {
+	height: 100vh;
+	width: 80px;
+	@include flex(column, nowrap, flex-start, center);
+	gap: 3rem;
+	box-shadow: 1px 0 3px -2px grey;
+	// margin-right: $s-4;
+
+	.logo {
+		width: 50px;
+		margin: 2rem;
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	.nav-item {
+		@include flex(column, nowrap, space-around, center);
+		gap: 1rem;
+
+		&__text {
+			font-size: 12px;
+		}
+
+		&:hover > .nav-icon__temp-dark,
+		&:hover > .nav-icon__temp-light {
+			fill: blue;
+		}
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	.nav-icon__temp-dark,
+	.nav-icon__temp-light {
+		height: 35px;
+		width: 35px;
+	}
+
+	.nav-icon__temp-dark {
+		fill: white;
+	}
+
+	.test-cube {
+		@include flex(column, nowrap, flex-end, center);
+		width: 50px;
+		height: 50px;
+		background: grey;
+		transition: all ease-in-out 0.2s;
+		border-radius: 15px;
+
+		&:hover {
+			background: green;
+			cursor: pointer;
+		}
+	}
+}
