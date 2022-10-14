@@ -10,11 +10,12 @@ import { auth } from "../firebase";
 const UserContext = createContext(undefined);
 
 export default function AuthContext({ children }: any) {
-  const createUser = (email, password) => {
+  const createUser = (email: any, password: any) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   return (
+    // @ts-ignore
     <UserContext.Provider value={createUser}>{children}</UserContext.Provider>
   );
 }
