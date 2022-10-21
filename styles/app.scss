@@ -4,8 +4,13 @@
 @import "../src/components/common/nav/nav";
 
 @import "../src/pages/login-page/login-page";
+@import "../src/pages/home/home";
 
 @import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
+
+body {
+	margin: 0;
+}
 
 .page-wrapper {
 	max-width: 100%;

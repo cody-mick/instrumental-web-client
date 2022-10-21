@@ -4,11 +4,52 @@
 	&__left-half {
 		height: 100vh;
 		width: 60%;
+		// background: #b2aca9;
+	}
+
+	.login-form {
+		@include flex(column, nowrap, center, center);
+		margin-top: 20%;
+
+		&__container {
+			@include flex(column, nowrap, center, center);
+			gap: 2rem;
+			height: 45vh;
+			width: 30%;
+			margin: 0 auto;
+			background: white;
+		}
+
+		.username-input,
+		.password-input {
+			padding: 10px;
+			border: none;
+			border-bottom: 2px solid #b2aca9;
+			transition: all ease-in-out 0.3s;
+
+			&:focus {
+				border-bottom: 2px solid #0acdff;
+				outline: none;
+			}
+		}
+
+		.login-button {
+			background: #0acdff;
+			border: none;
+			padding: 10px;
+			width: 40%;
+			border-radius: 10px;
+			box-shadow: 2px 2px 2px gray;
+
+			&:hover {
+				cursor: pointer;
+			}
+		}
 	}
 
 	&__right-half {
 		height: 100vh;
 		width: 40%;
-		background-color: blue;
+		background-color: #0acdff;
 	}
 }
