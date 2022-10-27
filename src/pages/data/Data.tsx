@@ -5,20 +5,24 @@ import { db } from "../../firebase";
 import { doctorsAtom } from "../../utilities/atoms/doctorsAtom";
 
 export default function Data() {
-	// const [doctors, setDoctors] = useState([]);
-	// const doctorsCollectionRef = collection(db, "doctors");
-	// const doctors = useAtom(doctorsAtom);
+  const [doctors, setDoctors] = useState([]);
+  const doctorsCollectionRef = collection(db, "doctors");
+  // const doctors = useAtom(doctorsAtom);
 
-	// console.log(doctors);
+  console.log(doctors);
 
-	// useEffect(() => {
-	// 	const getDoctors = async () => {
-	// 		const data = await getDocs(doctorsCollectionRef);
-	// 		console.log(data);
-	// 	};
+  useEffect(() => {
+    const getDoctors = async () => {
+      const rawData = await getDocs(doctorsCollectionRef);
+      const data = [];
+      rawData.forEach((doc) => {
+        data.push(doc.data());
+      });
+      console.log(data);
+    };
 
-	// 	getDoctors();
-	// }, []);
+    getDoctors();
+  }, []);
 
-	return <div>Data</div>;
+  return <div>Data</div>;
 }
