@@ -1,34 +1,50 @@
-import { TextField } from "@mui/material";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
-import React from "react";
+import { Button, TextField } from "@mui/material";
+import {
+	createUserWithEmailAndPassword,
+	getAuth,
+	onAuthStateChanged,
+} from "firebase/auth";
+import React, { useState } from "react";
+import { auth } from "../../firebase";
 
 export default function SignUp() {
-	const auth = getAuth();
-	createUserWithEmailAndPassword(auth, "cody.b.mick@gmail.com", "1234")
-		.then((userCredential) => {
-			const user = userCredential.user;
-		})
-		.catch((error) => {
-			const errorCode = error.code;
-			const errorMessage = error.message;
-			console.log(errorCode, ": ", errorMessage);
-		});
+	const [registerEmail, setRegisterEmail] = useState("");
+	const [registerPassword, setRegisterPassword] = useState("");
+	const [user, setUser] = useState({});
+	onAuthStateChanged(auth, (currentUser) => {
+		//@ts-ignore
+		setUser(currentUser);
+	});
+	// const [loginEmail, setLoginEmail] = useState("");
+	// const [loginPassword, setLoginPassword] = useState("");
+	const register = async () => {
+		try {
+			const user = await createUserWithEmailAndPassword(
+				auth,
+				registerEmail,
+				registerPassword
+			);
+			console.log(user);
+		} catch (err: any) {
+			console.log("An error has occurred: ", err.message);
+		}
+	};
+	// const login = async () => {};
+	// const logout = async () => {};
 	return (
-		<div className="signup-form">
-			<h1>Create Account</h1>
-			<TextField id="outlined-basic" label="Username" variant="outlined" />
+		<div>
+			<h3>Sign Up</h3>
 			<TextField
-				id="outlined-basic"
+				variant="outlined"
+				label="Email"
+				onChange={(event) => setRegisterEmail(event.target.value)}></TextField>
+			<TextField
+				variant="outlined"
 				label="Password"
-				variant="outlined"
-				type="password"
-			/>
-			<TextField
-				id="outlined-basic"
-				label="Confirm Password"
-				variant="outlined"
-				type="password"
-			/>
+				onChange={(event) =>
+					setRegisterPassword(event.target.value)
+				}></TextField>
+			<Button onClick={register}>Create Account</Button>
 		</div>
 	);
 }

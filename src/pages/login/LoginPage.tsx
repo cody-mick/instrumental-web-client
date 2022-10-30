@@ -1,4 +1,5 @@
 import {
+	Button,
 	IconButton,
 	InputAdornment,
 	OutlinedInput,
@@ -7,10 +8,12 @@ import {
 import { useNavigate } from "react-router-dom";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useState } from "react";
+import { signOut } from "firebase/auth";
 
 export default function LoginPage() {
 	const nav = useNavigate();
 	const [passwordVisibility, setPasswordVisibility] = useState(false);
+	const login = async () => {};
 
 	return (
 		<div className="login-page">
@@ -18,27 +21,16 @@ export default function LoginPage() {
 				<div className="login-form">
 					<div className="login-form__container">
 						<h3>Login</h3>
-						<TextField label="Username" variant="outlined" />
-						<OutlinedInput
-							label="Password"
-							type={passwordVisibility ? "text" : "password"}
-							endAdornment={
-								<InputAdornment position="end">
-									<IconButton
-										aria-label="toggle password visibility"
-										onClick={() => setPasswordVisibility(!passwordVisibility)}
-										edge="end">
-										{passwordVisibility ? <Visibility /> : <VisibilityOff />}
-									</IconButton>
-								</InputAdornment>
-							}
-						/>
-						<button
-							type="button"
-							onClick={() => nav("dashboard")}
-							className="login-button">
+						<TextField label="Email" type="text"></TextField>
+						<TextField label="Password" type="password"></TextField>
+						<Button
+							variant="contained"
+							style={{
+								backgroundColor: "#0ACDFF",
+							}}
+							onClick={() => nav("/dashboard")}>
 							Login
-						</button>
+						</Button>
 					</div>
 				</div>
 			</div>
