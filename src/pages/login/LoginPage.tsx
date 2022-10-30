@@ -1,7 +1,16 @@
+import {
+	IconButton,
+	InputAdornment,
+	OutlinedInput,
+	TextField,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { useState } from "react";
 
 export default function LoginPage() {
 	const nav = useNavigate();
+	const [passwordVisibility, setPasswordVisibility] = useState(false);
 
 	return (
 		<div className="login-page">
@@ -9,15 +18,20 @@ export default function LoginPage() {
 				<div className="login-form">
 					<div className="login-form__container">
 						<h3>Login</h3>
-						<input
-							type="text"
-							placeholder="Username"
-							className="username-input"
-						/>
-						<input
-							type="password"
-							placeholder="Password"
-							className="password-input"
+						<TextField label="Username" variant="outlined" />
+						<OutlinedInput
+							label="Password"
+							type={passwordVisibility ? "text" : "password"}
+							endAdornment={
+								<InputAdornment position="end">
+									<IconButton
+										aria-label="toggle password visibility"
+										onClick={() => setPasswordVisibility(!passwordVisibility)}
+										edge="end">
+										{passwordVisibility ? <Visibility /> : <VisibilityOff />}
+									</IconButton>
+								</InputAdornment>
+							}
 						/>
 						<button
 							type="button"

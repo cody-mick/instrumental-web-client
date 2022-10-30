@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Data from "../../pages/data/Data";
+import Doctors from "../../pages/doctors/Doctors";
 import Home from "../../pages/home/Home";
 import LoginPage from "../../pages/login/LoginPage";
 import SignUp from "../../pages/signup/SignUp";
@@ -16,6 +17,7 @@ export default function Router() {
 				<Route element={<Page />}>
 					<Route path="/dashboard" element={<Home />} />
 					<Route path="/data-test" element={<Data />} />
+					<Route path="/doctors" element={<Doctors />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>
