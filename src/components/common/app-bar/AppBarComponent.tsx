@@ -14,9 +14,10 @@ import {
 import AdbIcon from "@mui/icons-material/Adb";
 import MenuIcon from "@mui/icons-material/Menu";
 import React, { useState } from "react";
+import { useNavigation } from "react-router-dom";
 
 export default function AppBarComponent() {
-	const pages = ["Cases", "Doctors", "Instruments"];
+	const pages = ["Cases", "Doctors", "Instruments", "Supplies"];
 	const settings = ["Profile", "Dashboard", "Logout"];
 
 	const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
@@ -43,7 +44,6 @@ export default function AppBarComponent() {
 						variant="h6"
 						noWrap
 						component="a"
-						href="/"
 						sx={{
 							mr: 2,
 							display: { xs: "none", md: "flex" },
