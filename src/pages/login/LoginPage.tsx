@@ -31,6 +31,14 @@ export default function LoginPage() {
 							onClick={() => nav("/dashboard")}>
 							Login
 						</Button>
+						<Button
+							variant="contained"
+							style={{
+								backgroundColor: "#0ACDFF",
+							}}
+							onClick={() => nav("/sign-up")}>
+							Sign Up
+						</Button>
 					</div>
 				</div>
 			</div>
