@@ -15,10 +15,13 @@ import AdbIcon from "@mui/icons-material/Adb";
 import MenuIcon from "@mui/icons-material/Menu";
 import React, { useState } from "react";
 import { Link, useNavigation } from "react-router-dom";
+import LocalHospital from "@mui/icons-material/LocalHospital";
+import { UserAuth } from "../../../contexts/AuthContext";
 
 export default function AppBarComponent() {
 	const pages = ["Cases", "Doctors", "Instruments", "Supplies"];
 	const settings = ["Profile", "Dashboard", "Logout"];
+	const { user } = UserAuth();
 
 	const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 	const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -39,7 +42,7 @@ export default function AppBarComponent() {
 		<AppBar position="static">
 			<Container maxWidth="xl">
 				<Toolbar disableGutters>
-					<AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+					<LocalHospital sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
 					<Typography
 						variant="h6"
 						noWrap
@@ -125,7 +128,7 @@ export default function AppBarComponent() {
 						<Tooltip title="Open settings">
 							<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
 								<Avatar
-									alt="Cody Mickelsen"
+									alt={user.displayName}
 									src="/static/images/avatar/2.jpg"
 								/>
 							</IconButton>
