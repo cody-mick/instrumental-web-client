@@ -14,7 +14,7 @@ import {
 import AdbIcon from "@mui/icons-material/Adb";
 import MenuIcon from "@mui/icons-material/Menu";
 import React, { useState } from "react";
-import { useNavigation } from "react-router-dom";
+import { Link, useNavigation } from "react-router-dom";
 
 export default function AppBarComponent() {
 	const pages = ["Cases", "Doctors", "Instruments", "Supplies"];
@@ -110,12 +110,14 @@ export default function AppBarComponent() {
 					</Typography>
 					<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
 						{pages.map((page) => (
-							<Button
-								key={page}
-								onClick={handleCloseNavMenu}
-								sx={{ my: 2, color: "white", display: "block" }}>
-								{page}
-							</Button>
+							<Link to={`/${page}`}>
+								<Button
+									key={page}
+									onClick={handleCloseNavMenu}
+									sx={{ my: 2, color: "white", display: "block" }}>
+									{page}
+								</Button>
+							</Link>
 						))}
 					</Box>
 
