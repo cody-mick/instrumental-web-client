@@ -1,19 +1,33 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDoc, getDocs, setDoc } from "firebase/firestore";
 import { useAtom } from "jotai";
+import { useEffect, useState } from "react";
 import { db } from "../../firebase";
 import { doctorsAtom } from "../../utilities/atoms/doctorsAtom";
+import useDoctorsStore from "../../utilities/state-hooks/doctors";
+
+interface Doctor {
+	doctorName: string;
+	specialty: string;
+	gloveSize?: number;
+	dominantHand?: string;
+}
 
 export default function Doctors() {
-	const [doctors, setDoctors] = useAtom(doctorsAtom);
-	const doctorsCollectionRef = collection(db, "doctors");
-	const getDoctors = async () => {
-		const rawData = await getDocs(doctorsCollectionRef);
-		const data: any = [];
-		rawData.forEach((doc) => {
-			data.push(doc.data());
-		});
-		console.log(data);
-	};
+	const [doctors, setDoctors] = useState<Doctor[]>([]);
+	useEffect(() => {
+		const getDoctors = async () => {
+			const querySnapshot = await getDocs(collection(db, "doctors"));
+			querySnapshot.forEach((doc) => {
+				console.log(doc.data());
+			});
+		};
+		getDoctors();
+	}, []);
 
-	return <div>Doctors</div>;
+	console.log(doctors);
+
+	// const doctors = useDoctorsStore((state) => state.doctors);
+	// console.log("DOCTORS: ", doctors);
+
+	return <div></div>;
 }

@@ -9,11 +9,22 @@ import { useNavigate } from "react-router-dom";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useState } from "react";
 import { signOut } from "firebase/auth";
+import { UserAuth } from "../../contexts/AuthContext";
 
 export default function LoginPage() {
 	const nav = useNavigate();
-	const [passwordVisibility, setPasswordVisibility] = useState(false);
-	const login = async () => {};
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const { signInUser } = UserAuth();
+
+	const signIn = async () => {
+		try {
+			await signInUser(email, password);
+			nav("/dashboard");
+		} catch (err: any) {
+			console.log(err.message);
+		}
+	};
 
 	return (
 		<div className="login-page">
@@ -21,14 +32,20 @@ export default function LoginPage() {
 				<div className="login-form">
 					<div className="login-form__container">
 						<h3>Login</h3>
-						<TextField label="Email" type="text"></TextField>
-						<TextField label="Password" type="password"></TextField>
+						<TextField
+							label="Email"
+							type="text"
+							onChange={(e) => setEmail(e.target.value)}></TextField>
+						<TextField
+							label="Password"
+							type="password"
+							onChange={(e) => setPassword(e.target.value)}></TextField>
 						<Button
 							variant="contained"
 							style={{
 								backgroundColor: "#0ACDFF",
 							}}
-							onClick={() => nav("/dashboard")}>
+							onClick={signIn}>
 							Login
 						</Button>
 						<Button
