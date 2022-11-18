@@ -3,7 +3,7 @@ import { addDoc, collection } from "firebase/firestore";
 import React, { useState } from "react";
 import { db } from "../../../firebase";
 
-export default function AddDoctorForm() {
+export default function AddDoctorForm({ onSuccess }: any) {
 	const [newDocName, setNewDocName] = useState("");
 	const [newDocSpecialty, setNewDocSpecialty] = useState("");
 	const [newDocGloveSize, setNewDocGloveSize] = useState("");
@@ -23,6 +23,7 @@ export default function AddDoctorForm() {
 				specialty: specialty,
 			});
 			console.log("Doctor created with ID: ", docRef.id);
+			onSuccess();
 			setNewDocName("");
 			setNewDocSpecialty("");
 			setNewDocDominantHand("");
