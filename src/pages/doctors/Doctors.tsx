@@ -1,5 +1,11 @@
 import { Button } from "@mui/material";
-import { collection, getDoc, getDocs, setDoc } from "firebase/firestore";
+import {
+	addDoc,
+	collection,
+	getDoc,
+	getDocs,
+	setDoc,
+} from "firebase/firestore";
 import { useAtom } from "jotai";
 import { useEffect, useState } from "react";
 import { db } from "../../firebase";
@@ -14,25 +20,35 @@ interface Doctor {
 }
 
 export default function Doctors() {
-	const [doctors, setDoctors] = useState<Doctor[]>([]);
 	useEffect(() => {
 		const getDoctors = async () => {
 			const querySnapshot = await getDocs(collection(db, "doctors"));
 			querySnapshot.forEach((doc) => {
-				console.log(doc.data());
+				// doctors.push(doc.data());
 			});
 		};
 		getDoctors();
 	}, []);
 
-	console.log(doctors);
-
-	// const doctors = useDoctorsStore((state) => state.doctors);
-	// console.log("DOCTORS: ", doctors);
+	const addDoctor = async () => {
+		try {
+			const docRef = await addDoc(collection(db, "doctors"), {
+				name: "Ashley Mickelsen",
+				dominantHand: "right",
+				gloveSize: 8,
+				specialty: "neurosurgery",
+			});
+			console.log("Doctor created with ID: ", docRef.id);
+		} catch (e) {
+			console.error("Could not complete request: ", e);
+		}
+	};
 
 	return (
 		<div>
-			<Button variant="contained">Add Doctor</Button>
+			<Button variant="contained" onClick={addDoctor}>
+				Add Doctor
+			</Button>
 		</div>
 	);
 }
