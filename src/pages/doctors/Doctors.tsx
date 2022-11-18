@@ -1,4 +1,12 @@
-import { Button } from "@mui/material";
+import {
+	Button,
+	Card,
+	Paper,
+	SpeedDial,
+	SpeedDialAction,
+	SpeedDialIcon,
+	TextField,
+} from "@mui/material";
 import {
 	addDoc,
 	collection,
@@ -8,6 +16,7 @@ import {
 } from "firebase/firestore";
 import { useAtom } from "jotai";
 import { useEffect, useState } from "react";
+import AddDoctorForm from "../../components/pages/doctors/AddDoctorForm";
 import { db } from "../../firebase";
 import { doctorsAtom } from "../../utilities/atoms/doctorsAtom";
 import useDoctorsStore from "../../utilities/state-hooks/doctors";
@@ -20,35 +29,33 @@ interface Doctor {
 }
 
 export default function Doctors() {
+	const [doctors, setDoctors] = useState([]);
+
 	useEffect(() => {
 		const getDoctors = async () => {
 			const querySnapshot = await getDocs(collection(db, "doctors"));
-			querySnapshot.forEach((doc) => {
-				// doctors.push(doc.data());
-			});
+			//@ts-ignore
+			setDoctors(querySnapshot.docs.map((doc) => ({ ...doc.data() })));
 		};
 		getDoctors();
 	}, []);
 
-	const addDoctor = async () => {
-		try {
-			const docRef = await addDoc(collection(db, "doctors"), {
-				name: "Ashley Mickelsen",
-				dominantHand: "right",
-				gloveSize: 8,
-				specialty: "neurosurgery",
-			});
-			console.log("Doctor created with ID: ", docRef.id);
-		} catch (e) {
-			console.error("Could not complete request: ", e);
-		}
-	};
+	console.log(doctors);
 
 	return (
 		<div>
-			<Button variant="contained" onClick={addDoctor}>
-				Add Doctor
-			</Button>
+			<AddDoctorForm />;
+			<SpeedDial
+				ariaLabel="add doctor speed dial"
+				sx={{ position: "absolute", bottom: 16, right: 16 }}
+				icon={<SpeedDialIcon />}>
+				<SpeedDialAction
+					key="add-doctor"
+					icon="+"
+					tooltipTitle="Add Doctor"
+					onClick={() => console.log("Add Doctor Clicked")}
+				/>
+			</SpeedDial>
 		</div>
 	);
 }
