@@ -5,16 +5,14 @@ import {
 	DialogContent,
 	DialogContentText,
 	DialogTitle,
-	Modal,
-	Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import AddDoctorForm from "./AddDoctorForm";
 
 export default function AddDoctorModal({ open, handleClose }: any) {
 	return (
 		<Dialog open={open} onClose={handleClose}>
-			<DialogTitle>Subscribe</DialogTitle>
+			<DialogTitle>Add a New Doctor</DialogTitle>
 			<DialogContent>
 				<DialogContentText>
 					To add a doctor, please fill in the information into the form and
@@ -22,7 +20,7 @@ export default function AddDoctorModal({ open, handleClose }: any) {
 				</DialogContentText>
 				<AddDoctorForm />
 				<DialogActions>
-					<Button onClick={() => {}}>Cancel</Button>
+					<Button onClick={() => handleClose()}>Cancel</Button>
 				</DialogActions>
 			</DialogContent>
 		</Dialog>

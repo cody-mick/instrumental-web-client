@@ -1,26 +1,12 @@
-import {
-	Button,
-	Card,
-	Paper,
-	SpeedDial,
-	SpeedDialAction,
-	SpeedDialIcon,
-	TextField,
-} from "@mui/material";
-import {
-	addDoc,
-	collection,
-	getDoc,
-	getDocs,
-	setDoc,
-} from "firebase/firestore";
-import { useAtom } from "jotai";
+import { SpeedDial, SpeedDialAction, SpeedDialIcon } from "@mui/material";
+import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
+import { collection, getDocs } from "firebase/firestore";
+
 import { useEffect, useState } from "react";
-import AddDoctorForm from "../../components/pages/doctors/AddDoctorForm";
+
 import AddDoctorModal from "../../components/pages/doctors/AddDoctorModal";
 import { db } from "../../firebase";
-import { doctorsAtom } from "../../utilities/atoms/doctorsAtom";
-import useDoctorsStore from "../../utilities/state-hooks/doctors";
+import SimpleSnackBar from "../../components/common/notifications/SimpleSnackBar";
 
 interface Doctor {
 	doctorName: string;
@@ -42,23 +28,25 @@ export default function Doctors() {
 		getDoctors();
 	}, []);
 
-	console.log(doctors);
-	console.log(addDoctorOpen);
+	const handleModalClose = () => setAddDoctorOpen(false);
 
 	return (
 		<div>
-			{addDoctorOpen ? <AddDoctorModal /> : null}
+			{addDoctorOpen ? (
+				<AddDoctorModal open={addDoctorOpen} handleClose={handleModalClose} />
+			) : null}
 			<SpeedDial
 				ariaLabel="add doctor speed dial"
 				sx={{ position: "absolute", bottom: 16, right: 16 }}
-				icon={<SpeedDialIcon />}>
+				icon={<HealthAndSafetyIcon />}>
 				<SpeedDialAction
 					key="add-doctor"
 					icon="+"
 					tooltipTitle="Add Doctor"
-					onClick={() => setAddDoctorOpen(!addDoctorOpen)}
+					onClick={() => setAddDoctorOpen(true)}
 				/>
 			</SpeedDial>
+			<SimpleSnackBar />
 		</div>
 	);
 }

@@ -23,6 +23,10 @@ export default function AddDoctorForm() {
 				specialty: specialty,
 			});
 			console.log("Doctor created with ID: ", docRef.id);
+			setNewDocName("");
+			setNewDocSpecialty("");
+			setNewDocDominantHand("");
+			setNewDocGloveSize("");
 		} catch (e) {
 			console.error("Could not complete request: ", e);
 		}
@@ -38,26 +42,31 @@ export default function AddDoctorForm() {
 					width: "50%",
 					margin: "0 auto",
 					marginTop: "15px",
+					padding: "15px",
 				}}>
 				<TextField
 					label="Doctor Name"
 					variant="outlined"
+					value={newDocName}
 					onChange={(e) => setNewDocName(e.target.value)}
 				/>
 				<TextField
 					label="Specialty"
 					variant="outlined"
+					value={newDocSpecialty}
 					onChange={(e) => setNewDocSpecialty(e.target.value)}
 				/>
 				<TextField
 					label="Dominant Hand"
 					variant="outlined"
+					value={newDocDominantHand}
 					onChange={(e) => setNewDocDominantHand(e.target.value)}
 				/>
 				<TextField
 					label="Glove Size"
 					variant="outlined"
 					type="number"
+					value={newDocGloveSize}
 					onChange={(e) => setNewDocGloveSize(e.target.value)}
 				/>
 				<Button
