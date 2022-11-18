@@ -17,6 +17,7 @@ import {
 import { useAtom } from "jotai";
 import { useEffect, useState } from "react";
 import AddDoctorForm from "../../components/pages/doctors/AddDoctorForm";
+import AddDoctorModal from "../../components/pages/doctors/AddDoctorModal";
 import { db } from "../../firebase";
 import { doctorsAtom } from "../../utilities/atoms/doctorsAtom";
 import useDoctorsStore from "../../utilities/state-hooks/doctors";
@@ -30,6 +31,7 @@ interface Doctor {
 
 export default function Doctors() {
 	const [doctors, setDoctors] = useState([]);
+	const [addDoctorOpen, setAddDoctorOpen] = useState(false);
 
 	useEffect(() => {
 		const getDoctors = async () => {
@@ -41,10 +43,11 @@ export default function Doctors() {
 	}, []);
 
 	console.log(doctors);
+	console.log(addDoctorOpen);
 
 	return (
 		<div>
-			<AddDoctorForm />;
+			{addDoctorOpen ? <AddDoctorModal /> : null}
 			<SpeedDial
 				ariaLabel="add doctor speed dial"
 				sx={{ position: "absolute", bottom: 16, right: 16 }}
@@ -53,7 +56,7 @@ export default function Doctors() {
 					key="add-doctor"
 					icon="+"
 					tooltipTitle="Add Doctor"
-					onClick={() => console.log("Add Doctor Clicked")}
+					onClick={() => setAddDoctorOpen(!addDoctorOpen)}
 				/>
 			</SpeedDial>
 		</div>
