@@ -8,15 +8,23 @@ import {
 	ListItemIcon,
 	ListItemText,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function DoctorsList({ doctors }: any) {
+	const [doctorDetailOpen, setDoctorDetailOpen] = useState(false);
 	return (
 		<Box sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
 			<nav aria-label="main doctors list">
 				<List>
 					{doctors.map((d: any) => (
-						<ListItem disablePadding key={d.name}>
+						<ListItem
+							disablePadding
+							key={d.name}
+							onClick={() => {
+								setDoctorDetailOpen(true);
+								console.log(doctorDetailOpen);
+							}}>
 							<ListItemButton>
 								<ListItemIcon>
 									<Person />

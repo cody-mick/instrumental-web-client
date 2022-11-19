@@ -8,6 +8,7 @@ import AddDoctorModal from "../../components/pages/doctors/AddDoctorModal";
 import { db } from "../../firebase";
 import SimpleSnackBar from "../../components/common/notifications/SimpleSnackBar";
 import DoctorsList from "../../components/pages/doctors/DoctorsList";
+import DetailDrawer from "../../components/common/drawer/DetailDrawer";
 
 interface Doctor {
 	doctorName: string;
