@@ -21,7 +21,7 @@ import { UserAuth } from "../../../contexts/AuthContext";
 export default function AppBarComponent() {
 	const pages = ["Cases", "Doctors", "Instruments", "Supplies"];
 	const settings = ["Profile", "Dashboard", "Logout"];
-	const { signOutUser } = UserAuth();
+	// const { signOutUser } = UserAuth();
 
 	const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 	const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -113,7 +113,7 @@ export default function AppBarComponent() {
 					</Typography>
 					<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
 						{pages.map((page) => (
-							<Link to={`/${page}`}>
+							<Link to={`/${page}`} style={{ textDecoration: "none" }}>
 								<Button
 									key={page}
 									onClick={handleCloseNavMenu}

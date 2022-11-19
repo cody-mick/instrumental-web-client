@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import AddDoctorModal from "../../components/pages/doctors/AddDoctorModal";
 import { db } from "../../firebase";
 import SimpleSnackBar from "../../components/common/notifications/SimpleSnackBar";
+import DoctorsList from "../../components/pages/doctors/DoctorsList";
 
 interface Doctor {
 	doctorName: string;
@@ -32,6 +33,7 @@ export default function Doctors() {
 
 	return (
 		<div>
+			<DoctorsList doctors={doctors} />
 			{addDoctorOpen ? (
 				<AddDoctorModal open={addDoctorOpen} handleClose={handleModalClose} />
 			) : null}
