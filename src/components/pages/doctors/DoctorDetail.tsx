@@ -4,9 +4,17 @@ import DoctorEdit from "./DoctorEdit";
 
 export default function DoctorDetail({ doctor }: any) {
 	const [editDocInfo, setEditDocInfo] = useState(false);
+	console.log(doctor);
 	return (
 		<Paper>
-			<div style={{ width: 450, padding: 35 }}>
+			<div
+				style={{
+					width: 450,
+					padding: 35,
+					marginTop: "5px",
+					minHeight: 250,
+				}}
+			>
 				<p style={{ fontSize: 24 }}>
 					{`${doctor.firstName} ${doctor.lastName}`}
 				</p>
@@ -22,7 +30,17 @@ export default function DoctorDetail({ doctor }: any) {
 				>
 					Edit Information
 				</Button>
-				{editDocInfo ? <DoctorEdit /> : null}
+				{editDocInfo ? (
+					<Button
+						variant="contained"
+						onClick={() => setEditDocInfo(false)}
+						color="secondary"
+						sx={{ marginLeft: "10px" }}
+					>
+						Cancel
+					</Button>
+				) : null}
+				{editDocInfo ? <DoctorEdit activeDoctor={doctor} /> : null}
 			</div>
 		</Paper>
 	);

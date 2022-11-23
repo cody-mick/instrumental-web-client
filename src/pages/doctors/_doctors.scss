@@ -1,0 +1,4 @@
+.doctors-page {
+    @include flex(row, nowrap, flex-start, center);
+    gap: 3rem;
+}

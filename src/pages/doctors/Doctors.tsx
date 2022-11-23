@@ -33,10 +33,12 @@ export default function Doctors() {
 	}, []);
 
 	const handleModalClose = () => setAddDoctorOpen(false);
+	const setDoctor = (doctor: any) => setActiveDoctor(doctor);
 
 	return (
 		<div className="doctors-page">
-			<DoctorsList doctors={doctors} />
+			<DoctorsList doctors={doctors} setDoctor={setDoctor} />
+			<DoctorDetail doctor={activeDoctor} />
 			{addDoctorOpen ? (
 				<AddDoctorModal
 					open={addDoctorOpen}

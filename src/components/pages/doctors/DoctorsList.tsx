@@ -18,7 +18,7 @@ import { Link } from "react-router-dom";
 import DetailDrawer from "../../common/drawer/DetailDrawer";
 import DoctorDetail from "./DoctorDetail";
 
-export default function DoctorsList({ doctors }: any) {
+export default function DoctorsList({ doctors, setDoctor }: any) {
 	return (
 		<div>
 			<Box
@@ -45,7 +45,7 @@ export default function DoctorsList({ doctors }: any) {
 							<ListItem
 								disablePadding
 								key={d.name}
-								onClick={() => {}}
+								onClick={() => setDoctor(d)}
 							>
 								<ListItemButton>
 									<ListItemIcon>
