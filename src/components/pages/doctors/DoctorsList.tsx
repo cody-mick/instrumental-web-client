@@ -1,22 +1,15 @@
-import { InboxRounded, Search } from "@mui/icons-material";
+import { Search } from "@mui/icons-material";
 import { Person } from "@mui/icons-material";
 import {
 	Box,
-	FormControl,
 	InputAdornment,
-	InputLabel,
 	List,
 	ListItem,
 	ListItemButton,
 	ListItemIcon,
 	ListItemText,
 	OutlinedInput,
-	TextField,
 } from "@mui/material";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import DetailDrawer from "../../common/drawer/DetailDrawer";
-import DoctorDetail from "./DoctorDetail";
 
 export default function DoctorsList({ doctors, setDoctor }: any) {
 	return (
