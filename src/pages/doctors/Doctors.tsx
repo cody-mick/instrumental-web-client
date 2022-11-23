@@ -9,6 +9,7 @@ import { db } from "../../firebase";
 import SimpleSnackBar from "../../components/common/notifications/SimpleSnackBar";
 import DoctorsList from "../../components/pages/doctors/DoctorsList";
 import DetailDrawer from "../../components/common/drawer/DetailDrawer";
+import DoctorDetail from "../../components/pages/doctors/DoctorDetail";
 
 interface Doctor {
 	doctorName: string;
@@ -36,12 +37,16 @@ export default function Doctors() {
 		<div>
 			<DoctorsList doctors={doctors} />
 			{addDoctorOpen ? (
-				<AddDoctorModal open={addDoctorOpen} handleClose={handleModalClose} />
+				<AddDoctorModal
+					open={addDoctorOpen}
+					handleClose={handleModalClose}
+				/>
 			) : null}
 			<SpeedDial
 				ariaLabel="add doctor speed dial"
 				sx={{ position: "absolute", bottom: 16, right: 16 }}
-				icon={<HealthAndSafetyIcon />}>
+				icon={<HealthAndSafetyIcon />}
+			>
 				<SpeedDialAction
 					key="add-doctor"
 					icon="+"
