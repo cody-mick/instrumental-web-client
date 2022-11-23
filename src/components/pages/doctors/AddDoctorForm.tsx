@@ -4,27 +4,31 @@ import React, { useState } from "react";
 import { db } from "../../../firebase";
 
 export default function AddDoctorForm({ onSuccess }: any) {
-	const [newDocName, setNewDocName] = useState("");
+	const [newDocFirstName, setNewDocFirstName] = useState("");
+	const [newDocLastName, setNewDocLastName] = useState("");
 	const [newDocSpecialty, setNewDocSpecialty] = useState("");
 	const [newDocGloveSize, setNewDocGloveSize] = useState("");
 	const [newDocDominantHand, setNewDocDominantHand] = useState("");
 
 	const addDoctor = async (
-		name: string,
+		firstName: string,
+		lastName: string,
 		specialty: string,
 		domHand: string,
 		gloveSize: string
 	) => {
 		try {
 			const docRef = await addDoc(collection(db, "doctors"), {
-				name: name,
+				firstName: firstName,
+				lastName: lastName,
 				dominantHand: domHand,
 				gloveSize: gloveSize,
 				specialty: specialty,
 			});
 			console.log("Doctor created with ID: ", docRef.id);
 			onSuccess();
-			setNewDocName("");
+			setNewDocFirstName("");
+			setNewDocLastName("");
 			setNewDocSpecialty("");
 			setNewDocDominantHand("");
 			setNewDocGloveSize("");
@@ -44,12 +48,19 @@ export default function AddDoctorForm({ onSuccess }: any) {
 					margin: "0 auto",
 					marginTop: "15px",
 					padding: "15px",
-				}}>
+				}}
+			>
 				<TextField
-					label="Doctor Name"
+					label="First Name"
 					variant="outlined"
-					value={newDocName}
-					onChange={(e) => setNewDocName(e.target.value)}
+					value={newDocFirstName}
+					onChange={(e) => setNewDocFirstName(e.target.value)}
+				/>
+				<TextField
+					label="Last Name"
+					variant="outlined"
+					value={newDocLastName}
+					onChange={(e) => setNewDocLastName(e.target.value)}
 				/>
 				<TextField
 					label="Specialty"
@@ -74,12 +85,14 @@ export default function AddDoctorForm({ onSuccess }: any) {
 					variant="contained"
 					onClick={() =>
 						addDoctor(
-							newDocName,
+							newDocFirstName,
+							newDocLastName,
 							newDocSpecialty,
 							newDocDominantHand,
 							newDocGloveSize
 						)
-					}>
+					}
+				>
 					Add Doctor
 				</Button>
 			</Paper>

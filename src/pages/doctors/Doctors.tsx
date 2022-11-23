@@ -21,6 +21,7 @@ interface Doctor {
 export default function Doctors() {
 	const [doctors, setDoctors] = useState([]);
 	const [addDoctorOpen, setAddDoctorOpen] = useState(false);
+	const [activeDoctor, setActiveDoctor] = useState({});
 
 	useEffect(() => {
 		const getDoctors = async () => {
@@ -34,7 +35,7 @@ export default function Doctors() {
 	const handleModalClose = () => setAddDoctorOpen(false);
 
 	return (
-		<div>
+		<div className="doctors-page">
 			<DoctorsList doctors={doctors} />
 			{addDoctorOpen ? (
 				<AddDoctorModal

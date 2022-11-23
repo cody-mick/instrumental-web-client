@@ -1,14 +1,29 @@
-import { Divider } from "@mui/material";
-import React from "react";
+import { Button, Paper } from "@mui/material";
+import { useState } from "react";
+import DoctorEdit from "./DoctorEdit";
 
 export default function DoctorDetail({ doctor }: any) {
+	const [editDocInfo, setEditDocInfo] = useState(false);
 	return (
-		<div style={{ width: 450 }}>
-			<p>{doctor.name}</p>
-			<p>{doctor.specialty}</p>
-			<p>{doctor.dominantHand}</p>
-			<p>{doctor.gloveSize}</p>
-			<p>{doctor?.musicPreference}</p>
-		</div>
+		<Paper>
+			<div style={{ width: 450, padding: 35 }}>
+				<p style={{ fontSize: 24 }}>
+					{`${doctor.firstName} ${doctor.lastName}`}
+				</p>
+				<p>Specialty: {doctor.specialty}</p>
+				<p>Dominant Hand: {doctor.dominantHand}</p>
+				<p>Glove Size: {doctor.gloveSize}</p>
+				{doctor.musicPreference ? (
+					<p>Music Preference: {doctor.musicPreference}</p>
+				) : null}
+				<Button
+					variant="contained"
+					onClick={() => setEditDocInfo(true)}
+				>
+					Edit Information
+				</Button>
+				{editDocInfo ? <DoctorEdit /> : null}
+			</div>
+		</Paper>
 	);
 }
