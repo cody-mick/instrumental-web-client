@@ -1,19 +1,24 @@
 import { Button } from "@mui/material";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
+import CaseDisplay from "../../components/pages/cases/CasesDisplay";
 import { db } from "../../firebase";
 
 export default function Cases() {
-	const [cases, setCases] = useState();
+	const [cases, setCases] = useState([]);
 	useEffect(() => {
 		const getCases = async () => {
 			const querySnapshot = await getDocs(collection(db, "cases"));
-			querySnapshot.forEach((c) => {
-				console.log(c.data());
-			});
+			//@ts-ignore
+			setCases(querySnapshot.docs.map((doc) => ({ ...doc.data() })));
+			// querySnapshot.forEach((c) => {
+			// 	console.log(c.data());
+			// });
 		};
 		getCases();
 	}, []);
+
+	console.log(cases);
 
 	const addCase = async () => {
 		try {
@@ -29,9 +34,10 @@ export default function Cases() {
 
 	return (
 		<div>
-			<Button variant="contained" onClick={addCase}>
+			<CaseDisplay cases={cases} />
+			{/* <Button variant="contained" onClick={addCase}>
 				Add Test Case
-			</Button>
+			</Button> */}
 		</div>
 	);
 }

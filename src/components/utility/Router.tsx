@@ -7,6 +7,7 @@ import Instruments from "../../pages/instruments/Instruments";
 import LoginPage from "../../pages/login/LoginPage";
 import SignUp from "../../pages/signup/SignUp";
 import Supplies from "../../pages/supplies/Supplies";
+import CaseDetail from "../pages/cases/CaseDetail";
 import Page from "./Page";
 
 export default function Router() {
@@ -18,10 +19,17 @@ export default function Router() {
 				<Route path="/sign-up" element={<SignUp />} />
 				{/* User Routes */}
 				<Route element={<Page />}>
-					<Route path="/dashboard" element={<Home />} />
+					<Route index path="/dashboard" element={<Home />} />
 					<Route path="/data-test" element={<Data />} />
 					<Route path="/doctors" element={<Doctors />} />
 					<Route path="/cases" element={<Cases />} />
+					<Route
+						path="/cases/:caseId"
+						loader={({ params }) => {
+							console.log(params.caseId);
+						}}
+						element={<CaseDetail />}
+					/>
 					<Route path="/supplies" element={<Supplies />} />
 					<Route path="instruments" element={<Instruments />} />
 				</Route>
