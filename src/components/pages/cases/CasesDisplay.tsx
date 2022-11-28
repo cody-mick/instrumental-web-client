@@ -26,6 +26,8 @@ export default function CasesDisplay({ cases }: any) {
 	const handleClose = () => {
 		setAnchorEl(null);
 	};
+	const [editModal, setEditModal] = useState(false);
+	const deleteItem = () => {};
 
 	return (
 		<div>
@@ -58,7 +60,7 @@ export default function CasesDisplay({ cases }: any) {
 									</TableCell>
 									<TableCell align="center">
 										<IconButton onClick={handleClick}>
-											<MoreVert onClick={() => {}} />
+											<MoreVert />
 										</IconButton>
 										<Menu
 											id="case-edit-menu"
@@ -76,14 +78,18 @@ export default function CasesDisplay({ cases }: any) {
 												},
 											}}
 										>
-											{editOptions.map((o) => (
-												<MenuItem
-													key={o}
-													onClick={() => {}}
-												>
-													{o}
-												</MenuItem>
-											))}
+											<MenuItem
+												onClick={() =>
+													setEditModal(true)
+												}
+											>
+												Edit
+											</MenuItem>
+											<MenuItem
+												onClick={() => deleteItem()}
+											>
+												Delete
+											</MenuItem>
 										</Menu>
 									</TableCell>
 								</TableRow>

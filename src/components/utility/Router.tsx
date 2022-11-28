@@ -28,6 +28,7 @@ export default function Router() {
 						loader={({ params }) => {
 							console.log("URL Params: ", params.caseId);
 						}}
+						action={({ params }) => {}}
 						element={<CaseDetail />}
 					/>
 					<Route path="/supplies" element={<Supplies />} />
