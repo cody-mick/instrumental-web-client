@@ -50,7 +50,7 @@ export default function CasesDisplay({ cases }: any) {
 					<TableBody>
 						{cases.map((c: any) => {
 							return (
-								<TableRow>
+								<TableRow key={c.caseId}>
 									<TableCell>{c.caseId}</TableCell>
 									<TableCell>
 										<Link to={`/cases/${c.caseId}`}>

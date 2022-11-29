@@ -42,7 +42,9 @@ export default function AppBarComponent() {
 		<AppBar position="static">
 			<Container maxWidth="xl">
 				<Toolbar disableGutters>
-					<LocalHospital sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+					<LocalHospital
+						sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+					/>
 					<Typography
 						variant="h6"
 						noWrap
@@ -55,18 +57,25 @@ export default function AppBarComponent() {
 							letterSpacing: ".2rem",
 							color: "inherit",
 							textDecoration: "none",
-						}}>
+						}}
+					>
 						INSTRUMENTAL
 					</Typography>
 
-					<Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+					<Box
+						sx={{
+							flexGrow: 1,
+							display: { xs: "flex", md: "none" },
+						}}
+					>
 						<IconButton
 							size="large"
 							aria-label="account of current user"
 							aria-controls="menu-appbar"
 							aria-haspopup="true"
 							onClick={handleOpenNavMenu}
-							color="inherit">
+							color="inherit"
+						>
 							<MenuIcon />
 						</IconButton>
 						<Menu
@@ -85,15 +94,23 @@ export default function AppBarComponent() {
 							onClose={handleCloseNavMenu}
 							sx={{
 								display: { xs: "block", md: "none" },
-							}}>
+							}}
+						>
 							{pages.map((page) => (
-								<MenuItem key={page} onClick={handleCloseNavMenu}>
-									<Typography textAlign="center">{page}</Typography>
+								<MenuItem
+									key={page}
+									onClick={handleCloseNavMenu}
+								>
+									<Typography textAlign="center">
+										{page}
+									</Typography>
 								</MenuItem>
 							))}
 						</Menu>
 					</Box>
-					<AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+					<AdbIcon
+						sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+					/>
 					<Typography
 						variant="h5"
 						noWrap
@@ -108,16 +125,30 @@ export default function AppBarComponent() {
 							letterSpacing: ".2rem",
 							color: "inherit",
 							textDecoration: "none",
-						}}>
+						}}
+					>
 						INSTRUMENTAL
 					</Typography>
-					<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+					<Box
+						sx={{
+							flexGrow: 1,
+							display: { xs: "none", md: "flex" },
+						}}
+					>
 						{pages.map((page) => (
-							<Link to={`/${page}`} style={{ textDecoration: "none" }}>
+							<Link
+								to={`/${page.toLowerCase()}`}
+								style={{ textDecoration: "none" }}
+							>
 								<Button
 									key={page}
 									onClick={handleCloseNavMenu}
-									sx={{ my: 2, color: "white", display: "block" }}>
+									sx={{
+										my: 2,
+										color: "white",
+										display: "block",
+									}}
+								>
 									{page}
 								</Button>
 							</Link>
@@ -126,7 +157,10 @@ export default function AppBarComponent() {
 
 					<Box sx={{ flexGrow: 0 }}>
 						<Tooltip title="Open settings">
-							<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+							<IconButton
+								onClick={handleOpenUserMenu}
+								sx={{ p: 0 }}
+							>
 								<Avatar
 									// alt={user.displayName}
 									src="/static/images/avatar/2.jpg"
@@ -147,10 +181,16 @@ export default function AppBarComponent() {
 								horizontal: "right",
 							}}
 							open={Boolean(anchorElUser)}
-							onClose={handleCloseUserMenu}>
+							onClose={handleCloseUserMenu}
+						>
 							{settings.map((setting) => (
-								<MenuItem key={setting} onClick={handleCloseUserMenu}>
-									<Typography textAlign="center">{setting}</Typography>
+								<MenuItem
+									key={setting}
+									onClick={handleCloseUserMenu}
+								>
+									<Typography textAlign="center">
+										{setting}
+									</Typography>
 								</MenuItem>
 							))}
 						</Menu>
