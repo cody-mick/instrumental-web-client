@@ -17,7 +17,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function CasesDisplay({ cases }: any) {
-	const editOptions = ["Edit", "Delete"];
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 	const open = Boolean(anchorEl);
 	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -34,13 +33,13 @@ export default function CasesDisplay({ cases }: any) {
 			<TableContainer
 				component={Paper}
 				sx={{
-					width: "52%",
+					maxWidth: "50%",
 					padding: "15px",
 					margin: "auto",
 					marginTop: "15px",
 				}}
 			>
-				<Table sx={{ width: 650 }}>
+				<Table sx={{ maxWidth: 950 }}>
 					<TableHead>
 						<TableRow>
 							<TableCell>Case ID</TableCell>
