@@ -19,7 +19,13 @@ import LocalHospital from "@mui/icons-material/LocalHospital";
 import { UserAuth } from "../../../contexts/AuthContext";
 
 export default function AppBarComponent() {
-	const pages = ["Cases", "Doctors", "Instruments", "Supplies"];
+	const pages = [
+		// "Preference Cards",
+		"Cases",
+		"Doctors",
+		"Instruments",
+		"Supplies",
+	];
 	const settings = ["Profile", "Dashboard", "Logout"];
 	// const { signOutUser } = UserAuth();
 
@@ -135,6 +141,19 @@ export default function AppBarComponent() {
 							display: { xs: "none", md: "flex" },
 						}}
 					>
+						<Link to="prefcards" style={{ textDecoration: "none" }}>
+							<Button
+								key="pref-cards"
+								onClick={handleCloseNavMenu}
+								sx={{
+									my: 2,
+									color: "white",
+									display: "block",
+								}}
+							>
+								Preference Cards
+							</Button>
+						</Link>
 						{pages.map((page) => (
 							<Link
 								to={`/${page.toLowerCase()}`}

@@ -34,10 +34,7 @@ export default function Router() {
 					/>
 					<Route path="/supplies" element={<Supplies />} />
 					<Route path="/instruments" element={<Instruments />} />
-					<Route
-						path="/preference-cards"
-						element={<PrefCardHome />}
-					/>
+					<Route path="/prefcards" element={<PrefCardHome />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>

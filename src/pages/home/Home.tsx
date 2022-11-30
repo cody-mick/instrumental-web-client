@@ -8,7 +8,7 @@ export default function Home() {
 			<div className="page-title">
 				<Card sx={{ width: 400, marginTop: "16px" }}>
 					<CardContent>
-						<Link to="/preference-cards">
+						<Link to="/prefcards">
 							<Typography>Get a Preference Card</Typography>
 						</Link>
 					</CardContent>
