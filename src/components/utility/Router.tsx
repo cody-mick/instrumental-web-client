@@ -5,6 +5,7 @@ import Doctors from "../../pages/doctors/Doctors";
 import Home from "../../pages/home/Home";
 import Instruments from "../../pages/instruments/Instruments";
 import LoginPage from "../../pages/login/LoginPage";
+import PrefCardHome from "../../pages/pref-cards/PrefCardHome";
 import SignUp from "../../pages/signup/SignUp";
 import Supplies from "../../pages/supplies/Supplies";
 import CaseDetail from "../pages/cases/CaseDetail";
@@ -32,7 +33,11 @@ export default function Router() {
 						element={<CaseDetail />}
 					/>
 					<Route path="/supplies" element={<Supplies />} />
-					<Route path="instruments" element={<Instruments />} />
+					<Route path="/instruments" element={<Instruments />} />
+					<Route
+						path="/preference-cards"
+						element={<PrefCardHome />}
+					/>
 				</Route>
 			</Routes>
 		</BrowserRouter>
