@@ -141,7 +141,10 @@ export default function AppBarComponent() {
 							display: { xs: "none", md: "flex" },
 						}}
 					>
-						<Link to="prefcards" style={{ textDecoration: "none" }}>
+						<Link
+							to="get-prefcard"
+							style={{ textDecoration: "none" }}
+						>
 							<Button
 								key="pref-cards"
 								onClick={handleCloseNavMenu}
