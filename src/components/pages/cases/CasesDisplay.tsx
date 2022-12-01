@@ -1,4 +1,4 @@
-import { Edit, HealthAndSafety, MoreVert } from "@mui/icons-material";
+import { HealthAndSafety, MoreVert } from "@mui/icons-material";
 import {
 	IconButton,
 	Menu,
@@ -55,7 +55,7 @@ export default function CasesDisplay({ cases }: any) {
 									<TableCell>{c.caseId}</TableCell>
 									<TableCell>
 										<Link to={`/cases/${c.caseId}`}>
-											{titleCase(c.procedure)}
+											{c.procedure}
 										</Link>
 									</TableCell>
 									<TableCell align="center">

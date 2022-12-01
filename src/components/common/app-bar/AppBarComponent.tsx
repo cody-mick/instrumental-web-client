@@ -24,7 +24,6 @@ export default function AppBarComponent() {
 		"Cases",
 		"Doctors",
 		"Instruments",
-		"Supplies",
 	];
 	const settings = ["Profile", "Dashboard", "Logout"];
 	// const { signOutUser } = UserAuth();

@@ -1,27 +1,13 @@
-import { Button, Paper } from "@mui/material";
+import { Button } from "@mui/material";
 import { useState } from "react";
-import DoctorDetailData from "./DoctorDetailData";
 import DoctorEdit from "./DoctorEdit";
-import NoDoctorSelected from "./NoDoctorSelected";
 
-export default function DoctorDetail({ doctor }: any) {
+export default function DoctorDetailData({ doctor }: any) {
 	const [editDocInfo, setEditDocInfo] = useState(false);
-	console.log("DOCTOR: ", doctor);
+
 	return (
-		<Paper
-			sx={{
-				height: "350px",
-				width: "300px",
-				marginTop: "15px",
-				padding: "25px",
-			}}
-		>
-			{!doctor ? (
-				<NoDoctorSelected />
-			) : (
-				<DoctorDetailData doctor={doctor} />
-			)}
-			{/* {!editDocInfo ? (
+		<div>
+			{!editDocInfo ? (
 				<div>
 					<p style={{ fontSize: 24 }}>
 						{`${doctor.firstName} ${doctor.lastName}`}
@@ -61,7 +47,7 @@ export default function DoctorDetail({ doctor }: any) {
 						Cancel
 					</Button>
 				</div>
-			)} */}
-		</Paper>
+			)}
+		</div>
 	);
 }
