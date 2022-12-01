@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import titleCase from "../../../utilities/functions/title-case";
 
 export default function CasesDisplay({ cases }: any) {
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -54,7 +55,7 @@ export default function CasesDisplay({ cases }: any) {
 									<TableCell>{c.caseId}</TableCell>
 									<TableCell>
 										<Link to={`/cases/${c.caseId}`}>
-											{c.procedure}
+											{titleCase(c.procedure)}
 										</Link>
 									</TableCell>
 									<TableCell align="center">
