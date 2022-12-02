@@ -18,9 +18,9 @@ export default function Instruments() {
 				icon={<HealthAndSafety />}
 			>
 				<SpeedDialAction
-					key="add-case"
+					key="add-instrument-set"
 					icon="+"
-					tooltipTitle="Add Case"
+					tooltipTitle="Add Tray"
 					onClick={() => {}}
 				/>
 			</SpeedDial>

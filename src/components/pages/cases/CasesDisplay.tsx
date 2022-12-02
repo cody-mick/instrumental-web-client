@@ -53,7 +53,13 @@ export default function CasesDisplay({ cases }: any) {
 								<TableRow key={c.caseId}>
 									<TableCell>{c.caseId}</TableCell>
 									<TableCell>
-										<Link to={`/cases/${c.caseId}`}>
+										<Link
+											to={`/cases/${c.caseId}`}
+											style={{
+												textDecoration: "none",
+												color: "inherit",
+											}}
+										>
 											{c.procedure}
 										</Link>
 									</TableCell>

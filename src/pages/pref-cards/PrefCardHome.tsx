@@ -9,9 +9,15 @@ import {
 	Select,
 	Stepper,
 } from "@mui/material";
+import { useAtom } from "jotai";
 import React from "react";
+import { casesAtom } from "../../utilities/atoms/casesAtom";
+import { doctorsAtom } from "../../utilities/atoms/doctorsAtom";
 
 export default function PrefCardHome() {
+	const cases = useAtom(casesAtom);
+	const doctors = useAtom(doctorsAtom);
+	console.log(doctors);
 	return (
 		<Box
 			sx={{
@@ -28,17 +34,24 @@ export default function PrefCardHome() {
 			<FormControl fullWidth>
 				<InputLabel id="doctor-label">Doctor</InputLabel>
 				<Select label="Doctor" labelId="doctor-label">
-					<MenuItem>Doctor1</MenuItem>
-					<MenuItem>Doctor2</MenuItem>
-					<MenuItem>Doctor3</MenuItem>
+					{doctors[0].map((d: any) => (
+						<MenuItem
+							key={d.firstName}
+							value={`${d.firstName} ${d.lastName}`}
+						>
+							{d.firstName} {d.lastName}
+						</MenuItem>
+					))}
 				</Select>
 			</FormControl>
 			<FormControl fullWidth>
 				<InputLabel id="case-label">Case</InputLabel>
 				<Select label="Doctor" labelId="case-label">
-					<MenuItem>Case1</MenuItem>
-					<MenuItem>Case2</MenuItem>
-					<MenuItem>Case3</MenuItem>
+					{cases[0].map((c: any) => (
+						<MenuItem key={c.caseId} value={c.procedure}>
+							{c.procedure}
+						</MenuItem>
+					))}
 				</Select>
 			</FormControl>
 			<Button variant="contained">Get Preference Card</Button>
