@@ -3,11 +3,11 @@ import { atom } from "jotai";
 import { db } from "../../firebase";
 
 const doctorsCollectionRef = collection(db, "doctors");
+const data: any = [];
 
-export const doctorsAtom = atom(async () => {
-	const rawData = await getDocs(doctorsCollectionRef);
-	const data = [];
-	rawData.forEach((doc) => {
-		data.push(doc.data());
-	});
+const querySnapshot = await getDocs(doctorsCollectionRef);
+querySnapshot.forEach((doc) => {
+	data.push(doc.data());
 });
+
+export const doctorsAtom = atom(data);

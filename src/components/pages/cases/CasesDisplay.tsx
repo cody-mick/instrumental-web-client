@@ -15,7 +15,6 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import titleCase from "../../../utilities/functions/title-case";
 
 export default function CasesDisplay({ cases }: any) {
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

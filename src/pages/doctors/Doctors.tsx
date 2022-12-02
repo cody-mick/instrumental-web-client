@@ -8,8 +8,9 @@ import AddDoctorModal from "../../components/pages/doctors/AddDoctorModal";
 import { db } from "../../firebase";
 import SimpleSnackBar from "../../components/common/notifications/SimpleSnackBar";
 import DoctorsList from "../../components/pages/doctors/DoctorsList";
-import DetailDrawer from "../../components/common/drawer/DetailDrawer";
 import DoctorDetail from "../../components/pages/doctors/DoctorDetail";
+import { useAtom } from "jotai";
+import { doctorsAtom } from "../../utilities/atoms/doctorsAtom";
 
 interface Doctor {
 	doctorName: string;
@@ -19,25 +20,16 @@ interface Doctor {
 }
 
 export default function Doctors() {
-	const [doctors, setDoctors] = useState([]);
+	const doctors = useAtom(doctorsAtom);
 	const [addDoctorOpen, setAddDoctorOpen] = useState(false);
 	const [activeDoctor, setActiveDoctor] = useState({});
-
-	useEffect(() => {
-		const getDoctors = async () => {
-			const querySnapshot = await getDocs(collection(db, "doctors"));
-			//@ts-ignore
-			setDoctors(querySnapshot.docs.map((doc) => ({ ...doc.data() })));
-		};
-		getDoctors();
-	}, []);
 
 	const handleModalClose = () => setAddDoctorOpen(false);
 	const setDoctor = (doctor: any) => setActiveDoctor(doctor);
 
 	return (
 		<div className="doctors-page">
-			<DoctorsList doctors={doctors} setDoctor={setDoctor} />
+			<DoctorsList doctors={doctors[0]} setDoctor={setDoctor} />
 			<DoctorDetail doctor={activeDoctor} />
 			{addDoctorOpen ? (
 				<AddDoctorModal

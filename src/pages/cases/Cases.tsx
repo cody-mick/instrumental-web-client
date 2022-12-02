@@ -1,16 +1,15 @@
-import { useContext } from "react";
+import { useAtom } from "jotai";
 import CaseDisplay from "../../components/pages/cases/CasesDisplay";
-import { CasesContext } from "../../contexts/CasesContext";
+import { casesAtom } from "../../utilities/atoms/casesAtom";
 
 export default function Cases() {
-	//@ts-ignore
-	const { cases, setCases } = useContext(CasesContext);
+	const cases = useAtom(casesAtom);
 
 	console.log(cases);
 
 	return (
 		<div>
-			<CaseDisplay cases={cases} />
+			<CaseDisplay cases={cases[0]} />
 		</div>
 	);
 }

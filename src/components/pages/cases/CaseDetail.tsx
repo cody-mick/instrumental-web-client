@@ -1,36 +1,14 @@
 import { Card, CardContent, Divider, Typography } from "@mui/material";
-import {
-	collection,
-	doc,
-	getDocs,
-	query,
-	QueryDocumentSnapshot,
-	where,
-} from "firebase/firestore";
-import { useContext, useEffect, useState } from "react";
+import { useAtom } from "jotai";
+import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { CasesContext } from "../../../contexts/CasesContext";
-import { db } from "../../../firebase";
-
-interface Procedure {
-	approach: string;
-	caseId: string;
-	dressings: string[];
-	equipment: string[];
-	instrumentation: string[];
-	medications: string[];
-	notes: string[];
-	procedure: string;
-	skinPrep: string[];
-	supplies: string[];
-	sutureUsage: {};
-}
+import { casesAtom } from "../../../utilities/atoms/casesAtom";
 
 export default function CaseDetail() {
-	//@ts-ignore
-	const { cases } = useContext(CasesContext);
+	const cases = useAtom(casesAtom);
 	let params = useParams();
-	const procedure = cases.find((c: any) => c.caseId === params.caseId);
+	const procedure = cases[0].find((c: any) => c.caseId === params.caseId);
 
 	console.log("PROCEDURE: ", procedure);
 	return (
