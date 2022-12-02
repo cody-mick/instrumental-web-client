@@ -1,19 +1,14 @@
+import { Box } from "@mui/material";
 import { Outlet } from "react-router-dom";
 import AppBarComponent from "../common/app-bar/AppBarComponent";
-import AppBar from "../common/app-bar/AppBarComponent";
-import NavBar from "../common/nav/NavBar";
 
 export default function Page() {
 	return (
-		<div
-			className="page"
-			//  style={{ display: "flex" }}
-		>
-			{/* <NavBar /> */}
+		<Box className="page">
 			<AppBarComponent />
-			<div className="outlet-page">
+			<Box className="outlet-page">
 				<Outlet />
-			</div>
-		</div>
+			</Box>
+		</Box>
 	);
 }

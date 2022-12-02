@@ -8,6 +8,7 @@ import PrefCardHome from "../../pages/pref-cards/PrefCardHome";
 import SignUp from "../../pages/signup/SignUp";
 import Supplies from "../../pages/supplies/Supplies";
 import CaseDetail from "../pages/cases/CaseDetail";
+import TrayDetails from "../pages/instruments/TrayDetails";
 import PreferenceCard from "../pages/pref-cards/PreferenceCard";
 import Page from "./Page";
 
@@ -32,6 +33,13 @@ export default function Router() {
 					/>
 					<Route path="/supplies" element={<Supplies />} />
 					<Route path="/instruments" element={<Instruments />} />
+					<Route
+						path="/instruments/:trayId"
+						loader={({ params }) => {
+							console.log("URL PARAMS: ", params.trayId);
+						}}
+						element={<TrayDetails />}
+					/>
 					<Route path="/get-prefcard" element={<PrefCardHome />} />
 					<Route path="/prefcard" element={<PreferenceCard />} />
 				</Route>

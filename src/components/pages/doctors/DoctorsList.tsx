@@ -13,46 +13,49 @@ import {
 
 export default function DoctorsList({ doctors, setDoctor }: any) {
 	return (
-		<div>
-			<Box
-				sx={{
-					width: "100%",
-					height: "100%",
-					maxWidth: 360,
-					bgcolor: "background.paper",
-					marginTop: "5px",
-					padding: "25px",
-				}}
-			>
-				<OutlinedInput
-					placeholder="Search..."
-					endAdornment={
-						<InputAdornment position="end">
-							<Search />
-						</InputAdornment>
-					}
-				/>
-				<nav aria-label="main doctors list">
-					<List>
-						{doctors.map((d: any) => (
-							<ListItem
-								disablePadding
-								key={d.name}
-								onClick={() => setDoctor(d)}
-							>
-								<ListItemButton>
-									<ListItemIcon>
-										<Person />
-									</ListItemIcon>
-									<ListItemText
-										primary={`${d.lastName}, ${d.firstName}`}
-									/>
-								</ListItemButton>
-							</ListItem>
-						))}
-					</List>
-				</nav>
-			</Box>
-		</div>
+		<Box
+			sx={{
+				width: "100%",
+				height: "100%",
+				maxWidth: 360,
+				bgcolor: "background.paper",
+				marginTop: "5px",
+				padding: "25px",
+				background: "none",
+			}}
+		>
+			<OutlinedInput
+				placeholder="Search..."
+				endAdornment={
+					<InputAdornment position="end">
+						<Search />
+					</InputAdornment>
+				}
+			/>
+			<nav aria-label="main doctors list">
+				<List
+					sx={{
+						height: "100%",
+					}}
+				>
+					{doctors.map((d: any) => (
+						<ListItem
+							disablePadding
+							key={d.name}
+							onClick={() => setDoctor(d)}
+						>
+							<ListItemButton>
+								<ListItemIcon>
+									<Person />
+								</ListItemIcon>
+								<ListItemText
+									primary={`${d.lastName}, ${d.firstName}`}
+								/>
+							</ListItemButton>
+						</ListItem>
+					))}
+				</List>
+			</nav>
+		</Box>
 	);
 }

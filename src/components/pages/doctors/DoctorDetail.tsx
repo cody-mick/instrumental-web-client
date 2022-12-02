@@ -12,7 +12,7 @@ export default function DoctorDetail({ doctor }: any) {
 				padding: "25px",
 			}}
 		>
-			{!doctor ? (
+			{Object.keys(doctor).length === 0 ? (
 				<NoDoctorSelected />
 			) : (
 				<DoctorDetailData doctor={doctor} />

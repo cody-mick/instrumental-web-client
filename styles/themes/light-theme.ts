@@ -3,6 +3,10 @@ import { createTheme } from "@mui/material/styles";
 export const themeLight = createTheme({
 	palette: {
 		mode: "light",
+		background: {
+			default: "#d6d6d6",
+			paper: "#eaeaea",
+		},
 		primary: {
 			main: "#0acdff",
 		},
@@ -17,7 +21,7 @@ export const themeLight = createTheme({
 		},
 	},
 	typography: {
-		fontFamily: "Poppins",
+		fontFamily: "Quicksand",
 		fontWeightRegular: 400,
 	},
 });
