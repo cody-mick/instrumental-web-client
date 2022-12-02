@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Cases from "../../pages/cases/Cases";
-import Data from "../../pages/data/Data";
 import Doctors from "../../pages/doctors/Doctors";
 import Home from "../../pages/home/Home";
 import Instruments from "../../pages/instruments/Instruments";
@@ -22,7 +21,6 @@ export default function Router() {
 				{/* User Routes */}
 				<Route element={<Page />}>
 					<Route index path="/dashboard" element={<Home />} />
-					<Route path="/data-test" element={<Data />} />
 					<Route path="/doctors" element={<Doctors />} />
 					<Route path="/cases" element={<Cases />} />
 					<Route
@@ -30,7 +28,6 @@ export default function Router() {
 						loader={({ params }) => {
 							console.log("URL Params: ", params.caseId);
 						}}
-						action={({ params }) => {}}
 						element={<CaseDetail />}
 					/>
 					<Route path="/supplies" element={<Supplies />} />
