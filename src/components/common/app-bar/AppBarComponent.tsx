@@ -14,7 +14,7 @@ import {
 import AdbIcon from "@mui/icons-material/Adb";
 import MenuIcon from "@mui/icons-material/Menu";
 import React, { useState } from "react";
-import { Link, useNavigation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import LocalHospital from "@mui/icons-material/LocalHospital";
 import { UserAuth } from "../../../contexts/AuthContext";
 
@@ -26,7 +26,6 @@ export default function AppBarComponent() {
 		"Instruments",
 	];
 	const settings = ["Profile", "Dashboard", "Logout"];
-	// const { signOutUser } = UserAuth();
 
 	const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 	const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -50,22 +49,26 @@ export default function AppBarComponent() {
 					<LocalHospital
 						sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
 					/>
-					<Typography
-						variant="h6"
-						noWrap
-						component="a"
-						sx={{
-							mr: 2,
-							display: { xs: "none", md: "flex" },
-							// fontFamily: "monospace",
-							fontWeight: 500,
-							letterSpacing: ".2rem",
-							color: "inherit",
-							textDecoration: "none",
-						}}
+					<Link
+						to="/dashboard"
+						style={{ textDecoration: "none", color: "inherit" }}
 					>
-						INSTRUMENTAL
-					</Typography>
+						<Typography
+							variant="h6"
+							noWrap
+							component="a"
+							sx={{
+								mr: 2,
+								display: { xs: "none", md: "flex" },
+								fontWeight: 500,
+								letterSpacing: ".2rem",
+								color: "inherit",
+								textDecoration: "none",
+							}}
+						>
+							INSTRUMENTAL
+						</Typography>
+					</Link>
 
 					<Box
 						sx={{
@@ -113,7 +116,7 @@ export default function AppBarComponent() {
 							))}
 						</Menu>
 					</Box>
-					<AdbIcon
+					<LocalHospital
 						sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
 					/>
 					<Typography

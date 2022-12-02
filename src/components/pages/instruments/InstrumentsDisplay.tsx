@@ -1,15 +1,14 @@
 import {
 	Paper,
 	Table,
+	TableBody,
 	TableCell,
 	TableContainer,
 	TableHead,
 	TableRow,
 } from "@mui/material";
-import React from "react";
 
 export default function InstrumentsDisplay({ instruments }: any) {
-	console.log(instruments);
 	return (
 		<TableContainer component={Paper}>
 			<Table>
@@ -19,12 +18,14 @@ export default function InstrumentsDisplay({ instruments }: any) {
 						<TableCell>Name</TableCell>
 					</TableRow>
 				</TableHead>
-				{instruments.map((ins: any) => (
-					<TableRow>
-						<TableCell>{ins.trayId}</TableCell>
-						<TableCell>{ins.name}</TableCell>
-					</TableRow>
-				))}
+				<TableBody>
+					{instruments.map((ins: any) => (
+						<TableRow>
+							<TableCell>{ins.trayId}</TableCell>
+							<TableCell>{ins.name}</TableCell>
+						</TableRow>
+					))}
+				</TableBody>
 			</Table>
 		</TableContainer>
 	);
