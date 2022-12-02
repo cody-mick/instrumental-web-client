@@ -4,6 +4,9 @@ import DoctorEdit from "./DoctorEdit";
 
 export default function DoctorDetailData({ doctor }: any) {
 	const [editDocInfo, setEditDocInfo] = useState(false);
+	const cancelEdit = () => {
+		setEditDocInfo(false);
+	};
 
 	return (
 		<div>
@@ -29,23 +32,14 @@ export default function DoctorDetailData({ doctor }: any) {
 							variant="contained"
 							onClick={() => setEditDocInfo(false)}
 							color="secondary"
-							sx={{ marginLeft: "10px" }}
 						>
 							Cancel
 						</Button>
 					) : null}
-					{editDocInfo ? <DoctorEdit activeDoctor={doctor} /> : null}
 				</div>
 			) : (
 				<div>
-					<DoctorEdit />
-					<Button
-						variant="contained"
-						color="secondary"
-						onClick={() => setEditDocInfo(false)}
-					>
-						Cancel
-					</Button>
+					<DoctorEdit activeDoctor={doctor} onCancel={cancelEdit} />
 				</div>
 			)}
 		</div>

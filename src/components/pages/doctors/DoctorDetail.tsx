@@ -6,7 +6,7 @@ export default function DoctorDetail({ doctor }: any) {
 	return (
 		<Paper
 			sx={{
-				height: "350px",
+				maxHeight: "550px",
 				width: "300px",
 				marginTop: "15px",
 				padding: "25px",

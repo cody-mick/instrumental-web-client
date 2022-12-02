@@ -1,4 +1,4 @@
-import { Card, CardContent, Divider, Typography } from "@mui/material";
+import { Card, CardContent, Chip, Divider, Typography } from "@mui/material";
 import { useAtom } from "jotai";
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
@@ -12,7 +12,14 @@ export default function CaseDetail() {
 
 	console.log("PROCEDURE: ", procedure);
 	return (
-		<Card sx={{ minWidth: 275 }}>
+		<Card
+			sx={{
+				minWidth: 275,
+				maxWidth: 650,
+				margin: "auto",
+				marginTop: "15px",
+			}}
+		>
 			<CardContent>
 				<Typography
 					sx={{ fontSize: 14 }}
@@ -25,43 +32,55 @@ export default function CaseDetail() {
 					{procedure.procedure}
 				</Typography>
 				<Typography>Approach: {procedure.approach}</Typography>
-				<Typography>Equipment</Typography>
-				<Divider />
+				<Divider>
+					<Chip label="EQUIPMENT" variant="outlined" />
+				</Divider>
 				{procedure.equipment.map((e: any) => (
 					<Typography>{e}</Typography>
 				))}
-				<Typography>Instrumentation</Typography>
-				<Divider />
+				{/* <Typography>Instrumentation</Typography> */}
+				<Divider>
+					<Chip label="INSTRUMENTATION" variant="outlined" />
+				</Divider>
 				{procedure.instrumentation.map((i: any) => (
 					<Typography>{i}</Typography>
 				))}
-				<Typography>Medications</Typography>
-				<Divider />
+				<Divider>
+					<Chip label="MEDICATIONS" variant="outlined" />
+				</Divider>
 				{procedure.medications.map((m: any) => (
 					<Typography>{m}</Typography>
 				))}
-				<Typography>Skin Prep</Typography>
-				<Divider />
+				<Divider>
+					<Chip label="SKIN PREP" variant="outlined" />
+				</Divider>
 				{procedure.skinPrep.map((sp: any) => (
 					<Typography>{sp}</Typography>
 				))}
-				<Typography>Supplies</Typography>
-				<Divider />
+				<Divider>
+					<Chip label="SUPPLIES" variant="outlined" />
+				</Divider>
 				{procedure.supplies.map((su: any) => (
 					<Typography>{su}</Typography>
 				))}
-				<Typography>Dressings</Typography>
-				<Divider />
+				<Divider>
+					<Chip label="DRESSINGS" variant="outlined" />
+				</Divider>
 				{procedure.dressings.map((d: any) => (
 					<Typography>{d}</Typography>
 				))}
-				<Typography>Notes</Typography>
-				<Divider />
+				<Divider>
+					<Chip label="NOTES" variant="outlined" />
+				</Divider>
 				{procedure.notes.map((n: any) => (
 					<Typography>{n}</Typography>
 				))}
-				<Typography>Suture and Usage</Typography>
-				<Divider />
+				<Divider>
+					<Chip label="SUTURE AND USAGE" variant="outlined" />
+				</Divider>
+				{Object.keys(procedure.sutureUsage).map((s) => (
+					<Typography>{`${s}: ${procedure.sutureUsage[s]}`}</Typography>
+				))}
 			</CardContent>
 		</Card>
 	);

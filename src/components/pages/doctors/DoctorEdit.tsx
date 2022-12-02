@@ -1,14 +1,15 @@
-import { Button, TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import { doc, updateDoc } from "firebase/firestore";
 import { useState } from "react";
 import { db } from "../../../firebase";
 
-export default function DoctorEdit({ activeDoctor }: any) {
-	const [firstName, setFirstName] = useState("");
-	const [lastName, setLastName] = useState("");
-	const [specialty, setSpecialty] = useState("");
-	const [dominantHand, setDominantHand] = useState("");
-	const [gloveSize, setGloveSize] = useState("");
+export default function DoctorEdit({ activeDoctor, onCancel }: any) {
+	console.log("ACTIVE DOCTOR: ", activeDoctor);
+	const [firstName, setFirstName] = useState(activeDoctor.firstName);
+	const [lastName, setLastName] = useState(activeDoctor.lastName);
+	const [specialty, setSpecialty] = useState(activeDoctor.specialty);
+	const [dominantHand, setDominantHand] = useState(activeDoctor.dominantHand);
+	const [gloveSize, setGloveSize] = useState(activeDoctor.gloveSize);
 
 	const updateDoctor = async (
 		firstName: string,
@@ -34,7 +35,13 @@ export default function DoctorEdit({ activeDoctor }: any) {
 	};
 
 	return (
-		<div>
+		<Box
+			sx={{
+				display: "flex",
+				flexDirection: "column",
+				gap: "10px",
+			}}
+		>
 			<TextField
 				label="First Name"
 				value={firstName}
@@ -81,6 +88,9 @@ export default function DoctorEdit({ activeDoctor }: any) {
 			>
 				Save
 			</Button>
-		</div>
+			<Button variant="contained" onClick={onCancel} color="secondary">
+				Cancel
+			</Button>
+		</Box>
 	);
 }
