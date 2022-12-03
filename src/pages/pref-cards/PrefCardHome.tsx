@@ -20,8 +20,6 @@ export default function PrefCardHome() {
 	const [doctor, setDoctor] = useState("");
 	const [procedure, setProcedure] = useState("");
 
-	console.log(doctor, procedure);
-
 	return (
 		<Box
 			sx={{

@@ -27,7 +27,7 @@ export default function TrayDetails() {
 					alignItems="center"
 					justifyContent="space-around"
 				>
-					<Grid item xs={6} spacing={2}>
+					<Grid item xs={6}>
 						<Typography>ID: {tray.trayId}</Typography>
 					</Grid>
 					<Grid item xs={6}>
