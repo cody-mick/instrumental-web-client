@@ -31,7 +31,7 @@ export default function AddCaseForm() {
 				label="Notes"
 				type="text"
 			/>
-			<MultiAdd label="Instrumentation" sectionTitle="Instruments" />
+			<MultiAdd label="Instrument" sectionTitle="Instruments" />
 		</form>
 	);
 }
