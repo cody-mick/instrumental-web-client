@@ -1,11 +1,12 @@
 import {
+	Button,
 	Dialog,
 	DialogContent,
 	DialogContentText,
 	DialogTitle,
 	TextField,
 } from "@mui/material";
-import React from "react";
+import AddCaseForm from "./AddCaseForm";
 
 export default function AddCaseModal({ open, handleClose }: any) {
 	return (
@@ -16,7 +17,11 @@ export default function AddCaseModal({ open, handleClose }: any) {
 					To add a case to the database, please fill out the form
 					below and press "Submit"
 				</DialogContentText>
-				<TextField />
+				<AddCaseForm />
+				<Button variant="contained">Submit</Button>
+				<Button onClick={handleClose} color="secondary">
+					Cancel
+				</Button>
 			</DialogContent>
 		</Dialog>
 	);

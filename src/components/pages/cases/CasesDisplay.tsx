@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import AddCaseModal from "./AddCaseModal";
 
 export default function CasesDisplay({ cases }: any) {
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -26,6 +27,10 @@ export default function CasesDisplay({ cases }: any) {
 		setAnchorEl(null);
 	};
 	const [editModal, setEditModal] = useState(false);
+	const [addCaseModal, setAddCaseModal] = useState(false);
+
+	console.log(addCaseModal);
+
 	const deleteItem = () => {};
 
 	return (
@@ -103,6 +108,12 @@ export default function CasesDisplay({ cases }: any) {
 					</TableBody>
 				</Table>
 			</TableContainer>
+			{addCaseModal ? (
+				<AddCaseModal
+					open={addCaseModal}
+					handleClose={() => setAddCaseModal(false)}
+				/>
+			) : null}
 			<SpeedDial
 				ariaLabel="add case speed dial"
 				sx={{ position: "absolute", bottom: 16, right: 16 }}
@@ -112,7 +123,7 @@ export default function CasesDisplay({ cases }: any) {
 					key="add-case"
 					icon="+"
 					tooltipTitle="Add Case"
-					onClick={() => {}}
+					onClick={() => setAddCaseModal(!addCaseModal)}
 				/>
 			</SpeedDial>
 		</div>
