@@ -1,9 +1,11 @@
 import {
+	Box,
 	Button,
 	IconButton,
 	InputAdornment,
 	OutlinedInput,
 	TextField,
+	Typography,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
@@ -15,6 +17,7 @@ export default function LoginPage() {
 	const nav = useNavigate();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	//@ts-ignore
 	const { signInUser } = UserAuth();
 
 	const signIn = async () => {
@@ -27,44 +30,58 @@ export default function LoginPage() {
 	};
 
 	return (
-		<div className="login-page">
-			<div className="login-page__left-half">
-				<div className="login-form">
-					<div className="login-form__container">
-						<h3>Login</h3>
-						<TextField
-							label="Email"
-							type="text"
-							onChange={(e) => setEmail(e.target.value)}></TextField>
-						<TextField
-							label="Password"
-							type="password"
-							onChange={(e) => setPassword(e.target.value)}></TextField>
-						<Button
-							variant="contained"
-							style={{
-								backgroundColor: "#0ACDFF",
-							}}
-							onClick={signIn}>
-							Login
-						</Button>
-						<Button
-							variant="contained"
-							style={{
-								backgroundColor: "#0ACDFF",
-							}}
-							onClick={() => nav("/sign-up")}>
-							Sign Up
-						</Button>
-					</div>
-				</div>
-			</div>
-			<div className="login-page__right-half">
-				<div className="logo">INSTRUMENTAL</div>
-				<div className="flavor-text">
-					"The Only App You'll Ever Need" - Doctors Everywhere
-				</div>
-			</div>
-		</div>
+		<Box
+			sx={{
+				display: "flex",
+				flexDirection: "column",
+				gap: "15px",
+				width: "35%",
+				margin: "auto",
+				marginTop: "10%",
+			}}
+		>
+			<Typography textAlign="center" fontSize={24} color="primary">
+				instrumental
+			</Typography>
+			<Typography sx={{ fontSize: 24 }}>Login</Typography>
+			<TextField
+				label="Email"
+				type="text"
+				onChange={(e) => setEmail(e.target.value)}
+			></TextField>
+			<TextField
+				label="Password"
+				type="password"
+				onChange={(e) => setPassword(e.target.value)}
+			></TextField>
+			<Box
+				sx={{
+					margin: "auto",
+					display: "flex",
+					flexDirection: "column",
+					gap: "15px",
+					width: "65%",
+				}}
+			>
+				<Button
+					variant="contained"
+					style={{
+						backgroundColor: "#0ACDFF",
+					}}
+					onClick={signIn}
+				>
+					Login
+				</Button>
+				<Button
+					variant="contained"
+					style={{
+						backgroundColor: "#0ACDFF",
+					}}
+					onClick={() => nav("/sign-up")}
+				>
+					Sign Up
+				</Button>
+			</Box>
+		</Box>
 	);
 }
