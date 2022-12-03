@@ -8,13 +8,13 @@ export default function CardGrid() {
 				<DataCard text="Get a Preference Card" navTo="get-prefcard" />
 			</Grid2>
 			<Grid2 xs={4}>
-				<DataCard text="Select a Case" navTo="cases" />
+				<DataCard text="View Cases" navTo="cases" />
 			</Grid2>
 			<Grid2 xs={4}>
-				<DataCard text="Doctors" navTo="doctors" />
+				<DataCard text="View Doctors" navTo="doctors" />
 			</Grid2>
 			<Grid2 xs={4}>
-				<DataCard text="Instrumentation" navTo="instruments" />
+				<DataCard text="View Instruments" navTo="instruments" />
 			</Grid2>
 		</Grid2>
 	);
