@@ -36,6 +36,7 @@ export default function DoctorsList({ doctors, setDoctor }: any) {
 				<List
 					sx={{
 						height: "100%",
+						width: "250px",
 					}}
 				>
 					{doctors.map((d: any) => (
