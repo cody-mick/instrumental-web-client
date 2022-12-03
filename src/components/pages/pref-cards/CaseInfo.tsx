@@ -1,11 +1,10 @@
 import { Divider, Grid, Paper, Typography } from "@mui/material";
-import { useContext } from "react";
-import { CasesContext } from "../../../contexts/CasesContext";
+import { useAtom } from "jotai";
+import { casesAtom } from "../../../utilities/atoms/casesAtom";
 
-export default function CaseInfo() {
-	//@ts-ignore
-	const { cases } = useContext(CasesContext);
-	const procedure = cases.find((c: any) => c.caseId === "at0001");
+export default function CaseInfo({ caseId }: any) {
+	const cases = useAtom(casesAtom);
+	const procedure = cases[0].find((c: any) => c.caseId === caseId);
 
 	return (
 		<Paper

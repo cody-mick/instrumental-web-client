@@ -1,15 +1,6 @@
 import { Grid, Paper, Typography } from "@mui/material";
 
-export default function DoctorInfo() {
-	const doctor = {
-		firstName: "Bart",
-		lastName: "Bonesaw",
-		dominantHand: "right",
-		gloveSize: 9,
-		specialty: "orthopedics",
-		musicPreference: "",
-	};
-
+export default function DoctorInfo({ doctor }: any) {
 	return (
 		<Paper
 			sx={{
