@@ -39,7 +39,11 @@ export default function DoctorDetailData({ doctor }: any) {
 				</div>
 			) : (
 				<div>
-					<DoctorEdit activeDoctor={doctor} onCancel={cancelEdit} />
+					<DoctorEdit
+						activeDoctor={doctor}
+						onCancel={cancelEdit}
+						onSuccess={() => setEditDocInfo(false)}
+					/>
 				</div>
 			)}
 		</div>

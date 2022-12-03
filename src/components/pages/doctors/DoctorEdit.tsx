@@ -2,14 +2,16 @@ import { Box, Button, TextField } from "@mui/material";
 import { doc, updateDoc } from "firebase/firestore";
 import { useState } from "react";
 import { db } from "../../../firebase";
+import SimpleSnackBar from "../../common/notifications/SimpleSnackBar";
 
-export default function DoctorEdit({ activeDoctor, onCancel }: any) {
+export default function DoctorEdit({ activeDoctor, onCancel, onSuccess }: any) {
 	console.log("ACTIVE DOCTOR: ", activeDoctor);
 	const [firstName, setFirstName] = useState(activeDoctor.firstName);
 	const [lastName, setLastName] = useState(activeDoctor.lastName);
 	const [specialty, setSpecialty] = useState(activeDoctor.specialty);
 	const [dominantHand, setDominantHand] = useState(activeDoctor.dominantHand);
 	const [gloveSize, setGloveSize] = useState(activeDoctor.gloveSize);
+	const [notification, setNotification] = useState(false);
 
 	const updateDoctor = async (
 		firstName: string,
@@ -28,7 +30,7 @@ export default function DoctorEdit({ activeDoctor, onCancel }: any) {
 				specialty: specialty,
 				gloveSize: gloveSize,
 			});
-			console.log("Doctor updated successfully!");
+			setNotification(true);
 		} catch (err) {
 			console.error(err);
 		}
@@ -82,7 +84,7 @@ export default function DoctorEdit({ activeDoctor, onCancel }: any) {
 						specialty,
 						dominantHand,
 						gloveSize,
-						activeDoctor.firstName
+						activeDoctor.id
 					)
 				}
 			>
@@ -91,6 +93,14 @@ export default function DoctorEdit({ activeDoctor, onCancel }: any) {
 			<Button variant="contained" onClick={onCancel} color="secondary">
 				Cancel
 			</Button>
+			{notification ? (
+				<SimpleSnackBar
+					open={notification}
+					handleClose={() => setNotification(false)}
+					message="Doctor updated successfully!"
+					color="success"
+				/>
+			) : null}
 		</Box>
 	);
 }
