@@ -41,7 +41,17 @@ export default function Router() {
 						element={<TrayDetails />}
 					/>
 					<Route path="/get-prefcard" element={<PrefCardHome />} />
-					<Route path="/prefcard" element={<PreferenceCard />} />
+					<Route
+						path="/prefcard/:caseId/:doctorId"
+						loader={({ params }) => {
+							console.log(
+								"URL PARAMS: ",
+								params.caseId,
+								params.doctorId
+							);
+						}}
+						element={<PreferenceCard />}
+					/>
 				</Route>
 			</Routes>
 		</BrowserRouter>

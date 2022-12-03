@@ -2,10 +2,7 @@ import { Divider, Grid, Paper, Typography } from "@mui/material";
 import { useAtom } from "jotai";
 import { casesAtom } from "../../../utilities/atoms/casesAtom";
 
-export default function CaseInfo({ caseId }: any) {
-	const cases = useAtom(casesAtom);
-	const procedure = cases[0].find((c: any) => c.caseId === caseId);
-
+export default function CaseInfo({ procedure }: any) {
 	return (
 		<Paper
 			elevation={3}

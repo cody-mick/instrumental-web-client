@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { useAtom } from "jotai";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { casesAtom } from "../../utilities/atoms/casesAtom";
 import { doctorsAtom } from "../../utilities/atoms/doctorsAtom";
 
@@ -42,7 +43,7 @@ export default function PrefCardHome() {
 					onChange={(e) => setProcedure(e.target.value)}
 				>
 					{cases[0].map((c: any) => (
-						<MenuItem key={c.caseId} value={c.procedure}>
+						<MenuItem key={c.caseId} value={c}>
 							{c.procedure}
 						</MenuItem>
 					))}
@@ -57,13 +58,15 @@ export default function PrefCardHome() {
 					onChange={(e) => setDoctor(e.target.value)}
 				>
 					{doctors[0].map((d: any) => (
-						<MenuItem key={d.firstName} value={d}>
+						<MenuItem key={d.id} value={d}>
 							{d.firstName} {d.lastName}
 						</MenuItem>
 					))}
 				</Select>
 			</FormControl>
-			<Button variant="contained">Get Preference Card</Button>
+			<Link to={`/prefcard/${procedure?.caseId}/${doctor?.id}`}>
+				<Button variant="contained">Get Preference Card</Button>
+			</Link>
 		</Box>
 	);
 }

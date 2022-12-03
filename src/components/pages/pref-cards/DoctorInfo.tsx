@@ -1,4 +1,6 @@
 import { Grid, Paper, Typography } from "@mui/material";
+import { useAtom } from "jotai";
+import { doctorsAtom } from "../../../utilities/atoms/doctorsAtom";
 
 export default function DoctorInfo({ doctor }: any) {
 	return (
