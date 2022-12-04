@@ -13,7 +13,6 @@ import AddDoctorFormik from "./AddDoctorFormik";
 
 export default function AddDoctorModal({ open, handleClose }: any) {
 	const [notification, setNotification] = useState(false);
-	const onSuccessHandler = setNotification(true);
 
 	return (
 		<Dialog open={open} onClose={handleClose}>

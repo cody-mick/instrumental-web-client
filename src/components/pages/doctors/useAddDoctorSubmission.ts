@@ -9,6 +9,7 @@ export default function useAddDoctorSubmission() {
 		setLoading(true);
 
 		try {
+			console.log("In the request!");
 			const docRef = await addDoc(collection(db, "doctors"), values);
 			console.log("Doctor created with ID:  ", docRef.id);
 			// onSuccess();
