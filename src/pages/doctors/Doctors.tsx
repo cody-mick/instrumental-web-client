@@ -37,7 +37,6 @@ export default function Doctors() {
 					onClick={() => setAddDoctorOpen(true)}
 				/>
 			</SpeedDial>
-			<SimpleSnackBar />
 		</div>
 	);
 }
