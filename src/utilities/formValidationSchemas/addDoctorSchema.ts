@@ -9,10 +9,10 @@ export const addDoctorInitialValues = {
 };
 
 const addDoctorSchema = object({
-	firstName: string().required(),
-	lastName: string().required(),
-	specialty: string().required(),
-	dominantHand: string().required(),
+	firstName: string().required("This field cannot be blank"),
+	lastName: string().required("This field cannot be blank"),
+	specialty: string().required("This field cannot be blank"),
+	dominantHand: string().required("This field cannot be blank"),
 	gloveSize: number(),
 	// musicPreference: string(),
 	// notes: array().of(string()),

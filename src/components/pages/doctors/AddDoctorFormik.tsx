@@ -1,12 +1,13 @@
 import { Button, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { Formik } from "formik";
-import React from "react";
 import addDoctorSchema, {
 	addDoctorInitialValues,
 } from "../../../utilities/formValidationSchemas/addDoctorSchema";
+import useAddDoctorSubmission from "./useAddDoctorSubmission";
 
 export default function AddDoctorFormik() {
+	// const { addDoctorSubmissionHandler, loading } = useAddDoctorSubmission();
 	return (
 		<div>
 			<Formik
@@ -34,6 +35,11 @@ export default function AddDoctorFormik() {
 									? errors.firstName
 									: ""
 							}
+							helperText={
+								errors.firstName && touched.firstName
+									? errors.firstName
+									: ""
+							}
 						/>
 						<TextField
 							label="Last Name"
@@ -42,6 +48,11 @@ export default function AddDoctorFormik() {
 							onBlur={handleBlur("lastName")}
 							// @ts-ignore
 							error={
+								errors.lastName && touched.lastName
+									? errors.lastName
+									: ""
+							}
+							helperText={
 								errors.lastName && touched.lastName
 									? errors.lastName
 									: ""
@@ -58,6 +69,11 @@ export default function AddDoctorFormik() {
 									? errors.specialty
 									: ""
 							}
+							helperText={
+								errors.specialty && touched.specialty
+									? errors.specialty
+									: ""
+							}
 						/>
 						<TextField
 							label="Dominant Hand"
@@ -70,6 +86,11 @@ export default function AddDoctorFormik() {
 									? errors.dominantHand
 									: ""
 							}
+							helperText={
+								errors.dominantHand && touched.dominantHand
+									? errors.dominantHand
+									: ""
+							}
 						/>
 						<TextField
 							label="Glove Size"
@@ -78,6 +99,11 @@ export default function AddDoctorFormik() {
 							onBlur={handleBlur("gloveSize")}
 							// @ts-ignore
 							error={
+								errors.gloveSize && touched.gloveSize
+									? errors.gloveSize
+									: ""
+							}
+							helperText={
 								errors.gloveSize && touched.gloveSize
 									? errors.gloveSize
 									: ""

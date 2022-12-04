@@ -9,13 +9,11 @@ import {
 import React, { useState } from "react";
 import SimpleSnackBar from "../../common/notifications/SimpleSnackBar";
 import AddDoctorForm from "./AddDoctorForm";
+import AddDoctorFormik from "./AddDoctorFormik";
 
 export default function AddDoctorModal({ open, handleClose }: any) {
 	const [notification, setNotification] = useState(false);
-
-	const onSuccessAddDoctor = () => {
-		setNotification(true);
-	};
+	const onSuccessHandler = setNotification(true);
 
 	return (
 		<Dialog open={open} onClose={handleClose}>
@@ -25,7 +23,7 @@ export default function AddDoctorModal({ open, handleClose }: any) {
 					To add a doctor, please fill in the information into the
 					form and click "Add Doctor"
 				</DialogContentText>
-				{/* <AddDoctorForm onSuccess={onSuccessAddDoctor} /> */}
+				<AddDoctorFormik />
 				<DialogActions>
 					<Button onClick={() => handleClose()}>Cancel</Button>
 				</DialogActions>
