@@ -14,11 +14,13 @@
 		"@mui/icons-material": "^5.10.9",
 		"@mui/material": "^5.10.10",
 		"firebase": "^9.12.1",
+		"formik": "^2.2.9",
 		"jotai": "^1.8.5",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-router-dom": "^6.4.3",
 		"yarn": "^1.22.19",
+		"yup": "^0.32.11",
 		"zustand": "^4.1.4"
 	},
 	"devDependencies": {
