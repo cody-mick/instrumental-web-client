@@ -1,6 +1,8 @@
 import { MoreVert } from "@mui/icons-material";
 import {
 	IconButton,
+	Menu,
+	MenuItem,
 	Paper,
 	Table,
 	TableBody,
@@ -9,9 +11,18 @@ import {
 	TableHead,
 	TableRow,
 } from "@mui/material";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function InstrumentsDisplay({ instruments }: any) {
+	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+	const open = Boolean(anchorEl);
+	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+		setAnchorEl(event.currentTarget);
+	};
+	const handleClose = () => {
+		setAnchorEl(null);
+	};
 	return (
 		<TableContainer
 			component={Paper}
@@ -41,9 +52,27 @@ export default function InstrumentsDisplay({ instruments }: any) {
 								</Link>
 							</TableCell>
 							<TableCell align="right">
-								<IconButton>
+								<IconButton onClick={handleClick}>
 									<MoreVert />
 								</IconButton>
+								<Menu
+									id="instrument-options-menu"
+									MenuListProps={{
+										"aria-labelledby": "long-button",
+									}}
+									anchorEl={anchorEl}
+									open={open}
+									onClose={handleClose}
+									PaperProps={{
+										style: {
+											maxHeight: 48 * 4.5,
+											width: "20ch",
+										},
+									}}
+								>
+									<MenuItem>Edit</MenuItem>
+									<MenuItem>Delete</MenuItem>
+								</Menu>
 							</TableCell>
 						</TableRow>
 					))}

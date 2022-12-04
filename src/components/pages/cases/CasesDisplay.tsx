@@ -42,8 +42,7 @@ export default function CasesDisplay({ cases }: any) {
 					padding: "15px",
 					margin: "auto",
 					marginTop: "15px",
-				}}
-			>
+				}}>
 				<Table sx={{ maxWidth: 950 }}>
 					<TableHead>
 						<TableRow>
@@ -63,8 +62,7 @@ export default function CasesDisplay({ cases }: any) {
 											style={{
 												textDecoration: "none",
 												color: "inherit",
-											}}
-										>
+											}}>
 											{c.procedure}
 										</Link>
 									</TableCell>
@@ -86,18 +84,15 @@ export default function CasesDisplay({ cases }: any) {
 													maxHeight: 48 * 4.5,
 													width: "20ch",
 												},
-											}}
-										>
+											}}>
 											<MenuItem
 												onClick={() =>
 													setEditModal(true)
-												}
-											>
+												}>
 												Edit
 											</MenuItem>
 											<MenuItem
-												onClick={() => deleteItem()}
-											>
+												onClick={() => deleteItem()}>
 												Delete
 											</MenuItem>
 										</Menu>
@@ -117,8 +112,7 @@ export default function CasesDisplay({ cases }: any) {
 			<SpeedDial
 				ariaLabel="add case speed dial"
 				sx={{ position: "absolute", bottom: 16, right: 16 }}
-				icon={<HealthAndSafety />}
-			>
+				icon={<HealthAndSafety />}>
 				<SpeedDialAction
 					key="add-case"
 					icon="+"

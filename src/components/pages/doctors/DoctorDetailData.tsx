@@ -1,11 +1,25 @@
-import { Button } from "@mui/material";
+import { async } from "@firebase/util";
+import { Alert, AlertTitle, Button } from "@mui/material";
+import { deleteDoc, doc } from "firebase/firestore";
 import { useState } from "react";
+import { db } from "../../../firebase";
+import SimpleSnackBar from "../../common/notifications/SimpleSnackBar";
+import DoctorDeleteWarning from "./DoctorDeleteWarning";
 import DoctorEdit from "./DoctorEdit";
 
 export default function DoctorDetailData({ doctor }: any) {
 	const [editDocInfo, setEditDocInfo] = useState(false);
+	const [deleteDoctor, setDeleteDoctor] = useState(false);
 	const cancelEdit = () => {
 		setEditDocInfo(false);
+	};
+	const cancelDelete = () => {
+		setDeleteDoctor(false);
+	};
+	const [notification, setNotification] = useState(false);
+	const onSuccess = () => {
+		setDeleteDoctor(false);
+		setNotification(true);
 	};
 
 	return (
@@ -23,16 +37,21 @@ export default function DoctorDetailData({ doctor }: any) {
 					) : null}
 					<Button
 						variant="contained"
-						onClick={() => setEditDocInfo(true)}
-					>
+						onClick={() => setEditDocInfo(true)}>
 						Edit Information
+					</Button>
+					<Button
+						color="warning"
+						variant="contained"
+						sx={{ marginLeft: "15px" }}
+						onClick={() => setDeleteDoctor(true)}>
+						Delete
 					</Button>
 					{editDocInfo ? (
 						<Button
 							variant="contained"
 							onClick={() => setEditDocInfo(false)}
-							color="secondary"
-						>
+							color="secondary">
 							Cancel
 						</Button>
 					) : null}
@@ -46,6 +65,21 @@ export default function DoctorDetailData({ doctor }: any) {
 					/>
 				</div>
 			)}
+			{deleteDoctor ? (
+				<DoctorDeleteWarning
+					open={deleteDoctor}
+					doctor={doctor}
+					onCancel={cancelDelete}
+					onSuccess={onSuccess}
+				/>
+			) : null}
+			{notification ? (
+				<SimpleSnackBar
+					open={notification}
+					handleClose={() => setNotification(false)}
+					message="Doctor deleted sucessfully!"
+				/>
+			) : null}
 		</div>
 	);
 }
