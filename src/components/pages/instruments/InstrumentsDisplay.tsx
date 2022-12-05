@@ -43,7 +43,7 @@ export default function InstrumentsDisplay({ instruments }: any) {
 			{editTray ? (
 				<EditTrayDialog
 					open={editTray}
-					onClose={handleEditClose}
+					handleClose={handleEditClose}
 					tray={activeTray}
 				/>
 			) : null}

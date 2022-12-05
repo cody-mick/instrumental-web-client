@@ -16,7 +16,7 @@ export default function DeleteTrayWarning({ open, handleClose, trayId }: any) {
 		<Dialog open={open} onClose={handleClose}>
 			<DialogTitle>Confirm Tray Delete</DialogTitle>
 			<DialogContent>
-				<Typography>{`Are you sure you want to delete tray #${trayId}? This action is permanent and cannot be undone.`}</Typography>
+				<Typography>{`Are you sure you want to delete this tray? This action is permanent and cannot be undone.`}</Typography>
 			</DialogContent>
 			<DialogActions>
 				<Button onClick={handleClose}>No</Button>

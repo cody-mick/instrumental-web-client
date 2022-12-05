@@ -7,10 +7,7 @@ export default function EditTrayDialog({ open, handleClose, tray }: any) {
 		<Dialog open={open} onClose={handleClose}>
 			<DialogContent>
 				<EditTrayFormik tray={tray} />
-				<Button
-					type="button"
-					onClick={() => handleClose}
-					color="secondary">
+				<Button type="button" onClick={handleClose} color="secondary">
 					Cancel
 				</Button>
 			</DialogContent>
