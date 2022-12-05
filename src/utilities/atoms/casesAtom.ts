@@ -7,7 +7,7 @@ const data: any = [];
 
 const querySnapshot = await getDocs(casesCollectionRef);
 querySnapshot.forEach((doc) => {
-	data.push(doc.data());
+	data.push({ ...doc.data(), id: doc.id });
 });
 
 export const casesAtom = atom(data);

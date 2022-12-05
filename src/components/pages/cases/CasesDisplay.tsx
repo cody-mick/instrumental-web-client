@@ -16,6 +16,7 @@ import {
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import AddCaseModal from "./AddCaseModal";
+import useCaseDelete from "./useCaseDelete";
 
 export default function CasesDisplay({ cases }: any) {
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -28,10 +29,7 @@ export default function CasesDisplay({ cases }: any) {
 	};
 	const [editModal, setEditModal] = useState(false);
 	const [addCaseModal, setAddCaseModal] = useState(false);
-
-	console.log(addCaseModal);
-
-	const deleteItem = () => {};
+	const { deleteCaseHandler, loading } = useCaseDelete();
 
 	return (
 		<div>
@@ -92,7 +90,9 @@ export default function CasesDisplay({ cases }: any) {
 												Edit
 											</MenuItem>
 											<MenuItem
-												onClick={() => deleteItem()}>
+												onClick={() =>
+													deleteCaseHandler(c.id)
+												}>
 												Delete
 											</MenuItem>
 										</Menu>

@@ -445,9 +445,10 @@ export default function AddCaseFormik() {
 							/>
 							<Button
 								type="submit"
+								variant="contained"
 								onClick={() => handleSubmit}
 								disabled={loading}>
-								Add Case
+								Submit
 							</Button>
 						</Box>
 						{loading ? <CircularProgress /> : null}

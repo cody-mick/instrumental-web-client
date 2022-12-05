@@ -7,7 +7,7 @@ const data: any = [];
 
 const querySnapshot = await getDocs(instrumentsCollectionRef);
 querySnapshot.forEach((doc) => {
-	data.push(doc.data());
+	data.push({ ...doc.data(), id: doc.id });
 });
 
 export const instrumentsAtom = atom(data);

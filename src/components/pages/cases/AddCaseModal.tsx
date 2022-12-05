@@ -18,7 +18,6 @@ export default function AddCaseModal({ open, handleClose }: any) {
 					below and press "Submit"
 				</DialogContentText>
 				<AddCaseFormik />
-				<Button variant="contained">Submit</Button>
 				<Button onClick={handleClose} color="secondary">
 					Cancel
 				</Button>
