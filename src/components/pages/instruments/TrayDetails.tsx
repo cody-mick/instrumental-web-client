@@ -25,8 +25,7 @@ export default function TrayDetails() {
 					container
 					direction="row"
 					alignItems="center"
-					justifyContent="space-around"
-				>
+					justifyContent="space-around">
 					<Grid item xs={6}>
 						<Typography>ID: {tray.trayId}</Typography>
 					</Grid>
@@ -35,7 +34,10 @@ export default function TrayDetails() {
 					</Grid>
 				</Grid>
 				<Divider />
-				<TrayContents contents={tray.contents} />
+				<TrayContents
+					instruments={tray.instruments}
+					supplies={tray.supplies}
+				/>
 			</Card>
 		</Box>
 	);

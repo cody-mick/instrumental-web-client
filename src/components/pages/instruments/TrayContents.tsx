@@ -12,12 +12,11 @@ import {
 } from "@mui/material";
 import React from "react";
 
-export default function TrayContents({ contents }: any) {
+export default function TrayContents({ instruments, supplies }: any) {
 	return (
 		<Box>
 			<Typography
-				sx={{ textAlign: "center", marginTop: "15px", fontSize: 24 }}
-			>
+				sx={{ textAlign: "center", marginTop: "15px", fontSize: 24 }}>
 				Tray Contents
 			</Typography>
 			<Divider textAlign="left" sx={{ marginTop: "15px" }}>
@@ -32,13 +31,22 @@ export default function TrayContents({ contents }: any) {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{contents.instruments.map((i: any) => (
+					{instruments.map((i: any) => (
 						<TableRow key={i.name}>
 							<TableCell sx={{ width: "150px" }}>
 								{i.code}
 							</TableCell>
 							<TableCell>{i.name}</TableCell>
 							<TableCell align="right">{i.quantity}</TableCell>
+						</TableRow>
+					))}
+					{supplies.map((s: any) => (
+						<TableRow key={s.name}>
+							<TableCell sx={{ width: "150px" }}>
+								{s.code}
+							</TableCell>
+							<TableCell>{s.name}</TableCell>
+							<TableCell align="right">{s.quantity}</TableCell>
 						</TableRow>
 					))}
 				</TableBody>
