@@ -12,23 +12,39 @@ import {
 	TableRow,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import DeleteTrayWarning from "./DeleteTrayWarning";
+import EditTrayDialog from "./EditTrayDialog";
 
 export default function InstrumentsDisplay({ instruments }: any) {
-	const [activeTray, setActiveTray] = useState("");
+	const [activeTray, setActiveTray] = useState({});
+	const [activeTrayId, setActiveTrayId] = useState("");
 	const [deleteWarning, setDeleteWarning] = useState(false);
+	const [editTray, setEditTray] = useState(false);
+
 	const handleDeleteClose = () => {
 		setDeleteWarning(false);
 	};
+
+	const handleEditClose = () => {
+		setEditTray(false);
+	};
+
 	return (
 		<Box>
 			{deleteWarning ? (
 				<DeleteTrayWarning
 					open={deleteWarning}
 					handleClose={handleDeleteClose}
-					trayId={activeTray}
+					trayId={activeTrayId}
+				/>
+			) : null}
+			{editTray ? (
+				<EditTrayDialog
+					open={editTray}
+					onClose={handleEditClose}
+					tray={activeTray}
 				/>
 			) : null}
 			<TableContainer
@@ -59,14 +75,14 @@ export default function InstrumentsDisplay({ instruments }: any) {
 								<TableCell align="right">
 									<IconButton
 										onClick={() => {
-											setActiveTray(ins.id);
-											setDeleteWarning(true);
+											setActiveTray(ins);
+											setEditTray(true);
 										}}>
 										<Edit />
 									</IconButton>
 									<IconButton
 										onClick={() => {
-											setActiveTray(ins.id);
+											setActiveTrayId(ins.id);
 											setDeleteWarning(true);
 										}}>
 										<Delete />

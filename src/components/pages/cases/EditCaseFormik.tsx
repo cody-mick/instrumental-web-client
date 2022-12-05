@@ -12,7 +12,7 @@ export default function EditCaseFormik({ procedure }: any) {
 			<Formik
 				initialValues={procedure}
 				validationSchema={addCaseSchema}
-				onSubmit={(values, caseId) =>
+				onSubmit={(values) =>
 					editCaseSubmissionHandler(values, procedure.id)
 				}>
 				{({
