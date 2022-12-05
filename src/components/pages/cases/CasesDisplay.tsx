@@ -1,5 +1,12 @@
-import { HealthAndSafety, MoreVert } from "@mui/icons-material";
+import { Delete, Edit, HealthAndSafety, MoreVert } from "@mui/icons-material";
 import {
+	Button,
+	CircularProgress,
+	Dialog,
+	DialogActions,
+	DialogContent,
+	DialogContentText,
+	DialogTitle,
 	IconButton,
 	Menu,
 	MenuItem,
@@ -13,6 +20,7 @@ import {
 	TableHead,
 	TableRow,
 } from "@mui/material";
+import { Box } from "@mui/system";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import AddCaseModal from "./AddCaseModal";
@@ -29,7 +37,13 @@ export default function CasesDisplay({ cases }: any) {
 	};
 	const [editModal, setEditModal] = useState(false);
 	const [addCaseModal, setAddCaseModal] = useState(false);
+	const [deleteWarning, setDeleteWarning] = useState(false);
+	const [selectedCase, setSelectedCase] = useState("");
 	const { deleteCaseHandler, loading } = useCaseDelete();
+
+	const closeDeleteWarning = () => {
+		setDeleteWarning(false);
+	};
 
 	return (
 		<div>
@@ -50,7 +64,7 @@ export default function CasesDisplay({ cases }: any) {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{cases.map((c: any) => {
+						{cases.map((c: any, index: any) => {
 							return (
 								<TableRow key={c.caseId}>
 									<TableCell>{c.caseId}</TableCell>
@@ -64,38 +78,19 @@ export default function CasesDisplay({ cases }: any) {
 											{c.procedure}
 										</Link>
 									</TableCell>
+
 									<TableCell align="center">
-										<IconButton onClick={handleClick}>
-											<MoreVert />
+										<IconButton
+											onClick={() => setEditModal(true)}>
+											<Edit />
 										</IconButton>
-										<Menu
-											id="case-edit-menu"
-											MenuListProps={{
-												"aria-labelledby":
-													"long-button",
-											}}
-											anchorEl={anchorEl}
-											open={open}
-											onClose={handleClose}
-											PaperProps={{
-												style: {
-													maxHeight: 48 * 4.5,
-													width: "20ch",
-												},
+										<IconButton
+											onClick={() => {
+												setDeleteWarning(true);
+												setSelectedCase(c.id);
 											}}>
-											<MenuItem
-												onClick={() =>
-													setEditModal(true)
-												}>
-												Edit
-											</MenuItem>
-											<MenuItem
-												onClick={() =>
-													deleteCaseHandler(c.id)
-												}>
-												Delete
-											</MenuItem>
-										</Menu>
+											<Delete />
+										</IconButton>
 									</TableCell>
 								</TableRow>
 							);
@@ -109,6 +104,29 @@ export default function CasesDisplay({ cases }: any) {
 					handleClose={() => setAddCaseModal(false)}
 				/>
 			) : null}
+			<Dialog open={deleteWarning} onClose={closeDeleteWarning}>
+				<DialogTitle>Delete Case</DialogTitle>
+				<DialogContent>
+					{loading ? (
+						<CircularProgress />
+					) : (
+						<Box>
+							<DialogContentText>
+								Delete Case {selectedCase}?
+							</DialogContentText>
+							<DialogActions>
+								<Button onClick={closeDeleteWarning}>No</Button>
+								<Button
+									onClick={() =>
+										deleteCaseHandler(selectedCase)
+									}>
+									Yes
+								</Button>
+							</DialogActions>
+						</Box>
+					)}
+				</DialogContent>
+			</Dialog>
 			<SpeedDial
 				ariaLabel="add case speed dial"
 				sx={{ position: "absolute", bottom: 16, right: 16 }}

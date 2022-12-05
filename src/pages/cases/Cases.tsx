@@ -4,6 +4,7 @@ import { casesAtom } from "../../utilities/atoms/casesAtom";
 
 export default function Cases() {
 	const cases = useAtom(casesAtom);
+	console.log(cases);
 
 	return (
 		<div>

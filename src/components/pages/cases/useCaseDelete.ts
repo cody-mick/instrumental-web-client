@@ -9,6 +9,7 @@ export default function useCaseDelete() {
 		setLoading(true);
 
 		try {
+			console.log("CASE TO DELTE: ", caseId);
 			await deleteDoc(doc(db, "cases", caseId));
 		} catch (e) {
 			console.error("AN ERROR OCCURRED: ", e);
