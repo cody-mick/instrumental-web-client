@@ -1,4 +1,4 @@
-import { MoreVert } from "@mui/icons-material";
+import { Delete, Edit, MoreVert } from "@mui/icons-material";
 import {
 	IconButton,
 	Menu,
@@ -15,19 +15,12 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function InstrumentsDisplay({ instruments }: any) {
-	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-	const open = Boolean(anchorEl);
-	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-		setAnchorEl(event.currentTarget);
-	};
-	const handleClose = () => {
-		setAnchorEl(null);
-	};
+	console.log(instruments[0].contents.instruments[0].name);
+
 	return (
 		<TableContainer
 			component={Paper}
-			sx={{ width: "75%", margin: "auto", marginTop: "15px" }}
-		>
+			sx={{ width: "75%", margin: "auto", marginTop: "15px" }}>
 			<Table>
 				<TableHead>
 					<TableRow>
@@ -46,33 +39,17 @@ export default function InstrumentsDisplay({ instruments }: any) {
 									style={{
 										textDecoration: "none",
 										color: "inherit",
-									}}
-								>
+									}}>
 									{ins.name}
 								</Link>
 							</TableCell>
 							<TableCell align="right">
-								<IconButton onClick={handleClick}>
-									<MoreVert />
+								<IconButton onClick={() => {}}>
+									<Edit />
 								</IconButton>
-								<Menu
-									id="instrument-options-menu"
-									MenuListProps={{
-										"aria-labelledby": "long-button",
-									}}
-									anchorEl={anchorEl}
-									open={open}
-									onClose={handleClose}
-									PaperProps={{
-										style: {
-											maxHeight: 48 * 4.5,
-											width: "20ch",
-										},
-									}}
-								>
-									<MenuItem>Edit</MenuItem>
-									<MenuItem>Delete</MenuItem>
-								</Menu>
+								<IconButton onClick={() => {}}>
+									<Delete />
+								</IconButton>
 							</TableCell>
 						</TableRow>
 					))}
