@@ -12,8 +12,7 @@ export default function CaseInfo({ procedure }: any) {
 				marginBottom: "15px",
 				width: 700,
 				padding: "15px",
-			}}
-		>
+			}}>
 			<Grid container spacing={2}>
 				<Grid item xs={6}>
 					<Typography>Case ID: {procedure.caseId}</Typography>
@@ -75,9 +74,9 @@ export default function CaseInfo({ procedure }: any) {
 				<Grid item xs={12}>
 					<Typography>Suture</Typography>
 					<Grid container spacing={2}>
-						{Object.keys(procedure.sutureUsage).map((u) => (
+						{procedure.sutureUsage.map((su: any) => (
 							<Grid item xs={6}>
-								{`${u}: ${procedure.sutureUsage[u]}`}
+								{`${su.area}: ${su.suture}`}
 							</Grid>
 						))}
 					</Grid>

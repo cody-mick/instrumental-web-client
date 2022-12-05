@@ -8,14 +8,17 @@ import addCaseSchema, {
 import MultiAdd from "../../common/form-inputs/MultiAdd";
 import useAddCaseFormSubmission from "./useAddCaseFormSubmission";
 
-export default function AddCaseFormik() {
+export default function AddCaseFormik({ onSuccess }: any) {
 	const { addCaseSubmissionHandler, loading } = useAddCaseFormSubmission();
+
 	return (
 		<div>
 			<Formik
 				initialValues={addCaseInitialValues}
 				validationSchema={addCaseSchema}
-				onSubmit={addCaseSubmissionHandler}>
+				onSubmit={(values) =>
+					addCaseSubmissionHandler(values, onSuccess)
+				}>
 				{({
 					handleSubmit,
 					handleChange,
@@ -448,10 +451,9 @@ export default function AddCaseFormik() {
 								variant="contained"
 								onClick={() => handleSubmit}
 								disabled={loading}>
-								Submit
+								{loading ? <CircularProgress /> : "Submit"}
 							</Button>
 						</Box>
-						{loading ? <CircularProgress /> : null}
 					</Form>
 				)}
 			</Formik>

@@ -13,7 +13,12 @@ import { TransitionProps } from "@mui/material/transitions";
 import React from "react";
 import EditCaseFormik from "./EditCaseFormik";
 
-export default function EditCaseDialog({ open, handleClose, procedure }: any) {
+export default function EditCaseDialog({
+	open,
+	handleClose,
+	procedure,
+	onSuccess,
+}: any) {
 	const Transition = React.forwardRef(function Transition(
 		props: TransitionProps & {
 			children: any;
@@ -42,7 +47,7 @@ export default function EditCaseDialog({ open, handleClose, procedure }: any) {
 				</Toolbar>
 			</AppBar>
 			<DialogContent>
-				<EditCaseFormik procedure={procedure} />
+				<EditCaseFormik procedure={procedure} onSuccess={onSuccess} />
 			</DialogContent>
 		</Dialog>
 	);

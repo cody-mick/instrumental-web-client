@@ -5,12 +5,12 @@ import { db } from "../../../firebase";
 export default function useCaseDelete() {
 	const [loading, setLoading] = useState(false);
 
-	const deleteCaseHandler = async (caseId: any) => {
+	const deleteCaseHandler = async (caseId: any, onSuccess: any) => {
 		setLoading(true);
 
 		try {
-			console.log("CASE TO DELTE: ", caseId);
 			await deleteDoc(doc(db, "cases", caseId));
+			onSuccess();
 		} catch (e) {
 			console.error("AN ERROR OCCURRED: ", e);
 		} finally {

@@ -5,7 +5,7 @@ import React from "react";
 import addCaseSchema from "../../../utilities/formValidationSchemas/addCaseSchema";
 import useEditCase from "./useEditCase";
 
-export default function EditCaseFormik({ procedure }: any) {
+export default function EditCaseFormik({ procedure, onSuccess }: any) {
 	const { loading, editCaseSubmissionHandler } = useEditCase();
 	return (
 		<div>
@@ -13,7 +13,7 @@ export default function EditCaseFormik({ procedure }: any) {
 				initialValues={procedure}
 				validationSchema={addCaseSchema}
 				onSubmit={(values) =>
-					editCaseSubmissionHandler(values, procedure.id)
+					editCaseSubmissionHandler(values, procedure.id, onSuccess)
 				}>
 				{({
 					handleSubmit,
@@ -523,10 +523,9 @@ export default function EditCaseFormik({ procedure }: any) {
 								variant="contained"
 								onClick={() => handleSubmit()}
 								disabled={loading}>
-								Submit
+								{loading ? <CircularProgress /> : "Submit"}
 							</Button>
 						</Box>
-						{loading ? <CircularProgress /> : null}
 					</Form>
 				)}
 			</Formik>

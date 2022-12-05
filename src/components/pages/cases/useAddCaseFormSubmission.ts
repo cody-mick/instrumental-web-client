@@ -5,12 +5,13 @@ import { db } from "../../../firebase";
 export default function useAddCaseFormSubmission() {
 	const [loading, setLoading] = useState(false);
 
-	const addCaseSubmissionHandler = async (values: any) => {
+	const addCaseSubmissionHandler = async (values: any, onSuccess: any) => {
 		setLoading(true);
 
 		try {
 			const docRef = await addDoc(collection(db, "cases"), values);
 			console.log("Case created with ID: ", docRef.id);
+			onSuccess();
 		} catch (e) {
 			console.error("Something went wrong: ", e);
 		} finally {
@@ -20,6 +21,7 @@ export default function useAddCaseFormSubmission() {
 
 	return {
 		loading,
+
 		addCaseSubmissionHandler,
 	};
 }
