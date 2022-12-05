@@ -451,9 +451,6 @@ export default function AddCaseFormik() {
 							</Button>
 						</Box>
 						{loading ? <CircularProgress /> : null}
-						<pre>{JSON.stringify(values, null, 2)}</pre>
-						<pre>{JSON.stringify(errors, null, 2)}</pre>
-						<pre>{JSON.stringify(touched, null, 2)}</pre>
 					</Form>
 				)}
 			</Formik>
