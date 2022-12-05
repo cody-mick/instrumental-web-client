@@ -6,7 +6,7 @@ import {
 	DialogTitle,
 	TextField,
 } from "@mui/material";
-import AddCaseForm from "./AddCaseForm";
+import AddCaseFormik from "./AddCaseFormik";
 
 export default function AddCaseModal({ open, handleClose }: any) {
 	return (
@@ -17,7 +17,7 @@ export default function AddCaseModal({ open, handleClose }: any) {
 					To add a case to the database, please fill out the form
 					below and press "Submit"
 				</DialogContentText>
-				<AddCaseForm />
+				<AddCaseFormik />
 				<Button variant="contained">Submit</Button>
 				<Button onClick={handleClose} color="secondary">
 					Cancel
