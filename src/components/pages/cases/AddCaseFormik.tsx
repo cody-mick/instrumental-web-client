@@ -1,4 +1,4 @@
-import { Button, TextField, Typography } from "@mui/material";
+import { Button, CircularProgress, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { FieldArray, Form, Formik } from "formik";
 import { ArraySchema } from "yup";
@@ -15,7 +15,7 @@ export default function AddCaseFormik() {
 			<Formik
 				initialValues={addCaseInitialValues}
 				validationSchema={addCaseSchema}
-				onSubmit={() => {}}>
+				onSubmit={addCaseSubmissionHandler}>
 				{({
 					handleSubmit,
 					handleChange,
@@ -82,7 +82,26 @@ export default function AddCaseFormik() {
 												(instrument, index) => (
 													<Box key={index}>
 														<TextField
-															name={`instruments.${index}`}
+															name={`instrumentation[${index}]`}
+															label="Tray"
+															value={instrument}
+															onChange={
+																handleChange
+															}
+															onBlur={handleBlur}
+															error={Boolean(
+																errors.instrumentation &&
+																	touched.instrumentation
+															)}
+															helperText={
+																errors.instrumentation &&
+																touched.instrumentation
+																	? errors
+																			.instrumentation[
+																			index
+																	  ]
+																	: ""
+															}
 														/>
 														<Button
 															type="button"
@@ -129,7 +148,12 @@ export default function AddCaseFormik() {
 												(equipment, index) => (
 													<Box key={index}>
 														<TextField
-															name={`equipment.${index}`}
+															name={`equipment[${index}]`}
+															label="Equipment"
+															value={equipment}
+															onChange={
+																handleChange
+															}
 														/>
 														<Button
 															type="button"
@@ -176,7 +200,12 @@ export default function AddCaseFormik() {
 												(supply, index) => (
 													<Box key={index}>
 														<TextField
-															name={`supply.${index}`}
+															name={`supplies[${index}]`}
+															label="Supply"
+															value={supply}
+															onChange={
+																handleChange
+															}
 														/>
 														<Button
 															type="button"
@@ -223,7 +252,12 @@ export default function AddCaseFormik() {
 												(medication, index) => (
 													<Box key={index}>
 														<TextField
-															name={`medication.${index}`}
+															name={`medications[${index}]`}
+															label="Medication"
+															value={medication}
+															onChange={
+																handleChange
+															}
 														/>
 														<Button
 															type="button"
@@ -258,7 +292,12 @@ export default function AddCaseFormik() {
 												(dressing, index) => (
 													<Box key={index}>
 														<TextField
-															name={`dressing.${index}`}
+															name={`dressings[${index}]`}
+															label="Dressing"
+															value={dressing}
+															onChange={
+																handleChange
+															}
 														/>
 														<Button
 															type="button"
@@ -293,7 +332,12 @@ export default function AddCaseFormik() {
 												(skinPrep, index) => (
 													<Box key={index}>
 														<TextField
-															name={`skinPrep.${index}`}
+															name={`skinPrep[${index}]`}
+															label="Prep Item"
+															value={skinPrep}
+															onChange={
+																handleChange
+															}
 														/>
 														<Button
 															type="button"
@@ -323,13 +367,19 @@ export default function AddCaseFormik() {
 								render={(arrayHelpers) => (
 									<Box>
 										{values.sutureUsage.map(
-											(suture, index) => (
+											(su: any, index) => (
 												<Box key={index}>
 													<TextField
-														name={`suture[${index}].area`}
+														name={`sutureUsage[${index}].area`}
+														value={su.area}
+														label="Area"
+														onChange={handleChange}
 													/>
 													<TextField
-														name={`suture[${index}].suture`}
+														name={`sutureUsage[${index}].suture`}
+														value={su.suture}
+														label="Suture"
+														onChange={handleChange}
 													/>
 													<Button
 														type="button"
@@ -366,7 +416,10 @@ export default function AddCaseFormik() {
 											values.notes.map((note, index) => (
 												<Box key={index}>
 													<TextField
-														name={`note.${index}`}
+														name={`notes[${index}]`}
+														label="Note"
+														value={note}
+														onChange={handleChange}
 														multiline
 													/>
 													<Button
@@ -390,7 +443,17 @@ export default function AddCaseFormik() {
 									</Box>
 								)}
 							/>
+							<Button
+								type="submit"
+								onClick={() => handleSubmit}
+								disabled={loading}>
+								Add Case
+							</Button>
 						</Box>
+						{loading ? <CircularProgress /> : null}
+						<pre>{JSON.stringify(values, null, 2)}</pre>
+						<pre>{JSON.stringify(errors, null, 2)}</pre>
+						<pre>{JSON.stringify(touched, null, 2)}</pre>
 					</Form>
 				)}
 			</Formik>
