@@ -24,25 +24,23 @@ import { Box } from "@mui/system";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import AddCaseModal from "./AddCaseModal";
+import EditCaseDialog from "./EditCaseDialog";
 import useCaseDelete from "./useCaseDelete";
 
 export default function CasesDisplay({ cases }: any) {
-	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-	const open = Boolean(anchorEl);
-	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-		setAnchorEl(event.currentTarget);
-	};
-	const handleClose = () => {
-		setAnchorEl(null);
-	};
 	const [editModal, setEditModal] = useState(false);
 	const [addCaseModal, setAddCaseModal] = useState(false);
+	const [editCase, setEditCase] = useState(false);
 	const [deleteWarning, setDeleteWarning] = useState(false);
-	const [selectedCase, setSelectedCase] = useState("");
+	const [selectedCase, setSelectedCase] = useState({});
+	const [selectedCaseId, setSelectedCaseId] = useState("");
 	const { deleteCaseHandler, loading } = useCaseDelete();
 
 	const closeDeleteWarning = () => {
 		setDeleteWarning(false);
+	};
+	const handleEditClose = () => {
+		setEditCase(false);
 	};
 
 	return (
@@ -78,16 +76,18 @@ export default function CasesDisplay({ cases }: any) {
 											{c.procedure}
 										</Link>
 									</TableCell>
-
 									<TableCell align="center">
 										<IconButton
-											onClick={() => setEditModal(true)}>
+											onClick={() => {
+												setEditCase(true);
+												setSelectedCase(c);
+											}}>
 											<Edit />
 										</IconButton>
 										<IconButton
 											onClick={() => {
 												setDeleteWarning(true);
-												setSelectedCase(c.id);
+												setSelectedCaseId(c.id);
 											}}>
 											<Delete />
 										</IconButton>
@@ -112,13 +112,13 @@ export default function CasesDisplay({ cases }: any) {
 					) : (
 						<Box>
 							<DialogContentText>
-								Delete Case {selectedCase}?
+								Delete Case {selectedCaseId}?
 							</DialogContentText>
 							<DialogActions>
 								<Button onClick={closeDeleteWarning}>No</Button>
 								<Button
 									onClick={() =>
-										deleteCaseHandler(selectedCase)
+										deleteCaseHandler(selectedCaseId)
 									}>
 									Yes
 								</Button>
@@ -127,6 +127,13 @@ export default function CasesDisplay({ cases }: any) {
 					)}
 				</DialogContent>
 			</Dialog>
+			{editCase ? (
+				<EditCaseDialog
+					open={editCase}
+					handleClose={handleEditClose}
+					procedure={selectedCase}
+				/>
+			) : null}
 			<SpeedDial
 				ariaLabel="add case speed dial"
 				sx={{ position: "absolute", bottom: 16, right: 16 }}
