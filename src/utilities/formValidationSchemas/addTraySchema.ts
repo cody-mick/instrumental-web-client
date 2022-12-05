@@ -5,7 +5,8 @@ const errorMessage = "This field cannot be left blank";
 export const addTrayInitialValues = {
 	trayId: "",
 	name: "",
-	contents: [],
+	instruments: [],
+	supplies: [],
 };
 
 const addTraySchema = object({
