@@ -10,8 +10,8 @@ export const addTrayInitialValues = {
 };
 
 const addTraySchema = object({
-	trayId: string(),
-	name: string(),
+	trayId: string().required(errorMessage),
+	name: string().required(errorMessage),
 	instruments: array().of(
 		object().shape({
 			code: string(),

@@ -5,12 +5,13 @@ import { db } from "../../../firebase";
 export default function useDeleteTray() {
 	const [loading, setLoading] = useState(false);
 
-	const deleteTrayHandler = async (trayId: any) => {
+	const deleteTrayHandler = async (trayId: any, onSuccess: any) => {
 		setLoading(true);
 
 		try {
 			const docRef = await deleteDoc(doc(db, "instrumentTrays", trayId));
 			console.log("Tray Deleted Successfully");
+			onSuccess();
 		} catch (e) {
 			console.error("An error occurred: ", e);
 		} finally {

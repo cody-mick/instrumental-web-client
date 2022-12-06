@@ -44,21 +44,47 @@ export default function EditTrayFormik({ tray }: any) {
 									value={values.trayId}
 									onChange={handleChange("trayId")}
 									onBlur={handleBlur("trayId")}
+									error={Boolean(
+										errors.trayId && touched.trayId
+									)}
+									//@ts-ignore
+									helperText={
+										errors.trayId && touched.trayId
+											? errors.trayId
+											: ""
+									}
 								/>
 								<TextField
 									label="Name"
 									value={values.name}
 									onChange={handleChange("name")}
 									onBlur={handleBlur("name")}
+									error={Boolean(errors.name && touched.name)}
+									//@ts-ignore
+									helperText={
+										errors.name && touched.name
+											? errors.name
+											: ""
+									}
 								/>
 							</Box>
 							<Typography>Contents:</Typography>
 							<Divider />
-							<Typography>Instruments</Typography>
+							<Typography
+								sx={{
+									marginBottom: "15px",
+								}}>
+								Instruments
+							</Typography>
 							<FieldArray
 								name="instruments"
 								render={(arrayHelpers) => (
-									<Box>
+									<Box
+										sx={{
+											display: "flex",
+											flexDirection: "column",
+											gap: "15px",
+										}}>
 										{values.instruments &&
 										values.instruments.length > 0
 											? values.instruments.map(
@@ -125,11 +151,18 @@ export default function EditTrayFormik({ tray }: any) {
 								)}
 							/>
 							<Divider />
-							<Typography>Supplies</Typography>
+							<Typography sx={{ marginBottom: "15px" }}>
+								Supplies
+							</Typography>
 							<FieldArray
 								name="supplies"
 								render={(arrayHelpers) => (
-									<Box>
+									<Box
+										sx={{
+											display: "flex",
+											flexDirection: "column",
+											gap: "15px",
+										}}>
 										{values.supplies &&
 										values.supplies.length > 0
 											? values.supplies.map(
@@ -197,12 +230,12 @@ export default function EditTrayFormik({ tray }: any) {
 							/>
 						</Box>
 						<Button
+							fullWidth
 							type="submit"
 							onClick={() => handleSubmit}
 							variant="contained">
-							Submit
+							{loading ? <CircularProgress /> : "Save"}
 						</Button>
-						{loading ? <CircularProgress /> : null}
 					</Form>
 				)}
 			</Formik>

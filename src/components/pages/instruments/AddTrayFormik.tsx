@@ -12,7 +12,7 @@ import addTraySchema, {
 } from "../../../utilities/formValidationSchemas/addTraySchema";
 import useAddTray from "./useAddTray";
 
-export default function AddTrayFormik() {
+export default function AddTrayFormik({ onSuccess }: any) {
 	const { loading, addTraySubmissionHandler } = useAddTray();
 
 	return (
@@ -20,7 +20,9 @@ export default function AddTrayFormik() {
 			<Formik
 				initialValues={addTrayInitialValues}
 				validationSchema={addTraySchema}
-				onSubmit={addTraySubmissionHandler}>
+				onSubmit={(values) =>
+					addTraySubmissionHandler(values, onSuccess)
+				}>
 				{({
 					handleSubmit,
 					handleChange,
@@ -190,13 +192,12 @@ export default function AddTrayFormik() {
 							/>
 						</Box>
 						<Button
+							fullWidth
 							type="submit"
 							onClick={() => handleSubmit}
 							variant="contained">
-							Submit
+							{loading ? <CircularProgress /> : "Create Tray"}
 						</Button>
-						{loading ? <CircularProgress /> : null}
-						<pre>{JSON.stringify(values, null, 2)}</pre>
 					</Form>
 				)}
 			</Formik>

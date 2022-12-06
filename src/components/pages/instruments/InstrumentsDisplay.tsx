@@ -14,6 +14,7 @@ import {
 import { Box } from "@mui/system";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import SimpleSnackBar from "../../common/notifications/SimpleSnackBar";
 import DeleteTrayWarning from "./DeleteTrayWarning";
 import EditTrayDialog from "./EditTrayDialog";
 
@@ -21,7 +22,13 @@ export default function InstrumentsDisplay({ instruments }: any) {
 	const [activeTray, setActiveTray] = useState({});
 	const [activeTrayId, setActiveTrayId] = useState("");
 	const [deleteWarning, setDeleteWarning] = useState(false);
+	const [deleteSuccess, setDeleteSuccess] = useState(false);
 	const [editTray, setEditTray] = useState(false);
+
+	const onDeleteSuccess = () => {
+		setDeleteWarning(false);
+		setDeleteSuccess(true);
+	};
 
 	const handleDeleteClose = () => {
 		setDeleteWarning(false);
@@ -38,8 +45,14 @@ export default function InstrumentsDisplay({ instruments }: any) {
 					open={deleteWarning}
 					handleClose={handleDeleteClose}
 					trayId={activeTrayId}
+					onSuccess={onDeleteSuccess}
 				/>
 			) : null}
+			<SimpleSnackBar
+				open={deleteSuccess}
+				handleClose={() => setDeleteSuccess(false)}
+				message="Tray deleted successfully!"
+			/>
 			{editTray ? (
 				<EditTrayDialog
 					open={editTray}

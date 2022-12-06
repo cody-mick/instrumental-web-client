@@ -5,7 +5,7 @@ import { db } from "../../../firebase";
 export default function useAddTray() {
 	const [loading, setLoading] = useState(false);
 
-	const addTraySubmissionHandler = async (values: any) => {
+	const addTraySubmissionHandler = async (values: any, onSuccess: any) => {
 		setLoading(true);
 
 		try {
@@ -14,6 +14,7 @@ export default function useAddTray() {
 				values
 			);
 			console.log("Tray created with ID: ", docRef.id);
+			onSuccess();
 		} catch (e) {
 			console.error("Something went wrong: ", e);
 		} finally {
