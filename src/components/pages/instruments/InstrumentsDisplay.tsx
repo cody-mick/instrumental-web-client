@@ -24,6 +24,7 @@ export default function InstrumentsDisplay({ instruments }: any) {
 	const [deleteWarning, setDeleteWarning] = useState(false);
 	const [deleteSuccess, setDeleteSuccess] = useState(false);
 	const [editTray, setEditTray] = useState(false);
+	const [editSuccess, setEditSuccess] = useState(false);
 
 	const onDeleteSuccess = () => {
 		setDeleteWarning(false);
@@ -36,6 +37,11 @@ export default function InstrumentsDisplay({ instruments }: any) {
 
 	const handleEditClose = () => {
 		setEditTray(false);
+	};
+
+	const onEditSuccess = () => {
+		setEditTray(false);
+		setEditSuccess(true);
 	};
 
 	return (
@@ -58,8 +64,14 @@ export default function InstrumentsDisplay({ instruments }: any) {
 					open={editTray}
 					handleClose={handleEditClose}
 					tray={activeTray}
+					onSuccess={onEditSuccess}
 				/>
 			) : null}
+			<SimpleSnackBar
+				open={editSuccess}
+				handleClose={() => setEditSuccess(false)}
+				message="Tray changes saved successfully!"
+			/>
 			<TableContainer
 				component={Paper}
 				sx={{ width: "75%", margin: "auto", marginTop: "15px" }}>

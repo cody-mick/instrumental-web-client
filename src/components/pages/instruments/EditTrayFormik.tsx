@@ -10,7 +10,7 @@ import { FieldArray, Form, Formik } from "formik";
 import addTraySchema from "../../../utilities/formValidationSchemas/addTraySchema";
 import useEditTray from "./useEditTray";
 
-export default function EditTrayFormik({ tray }: any) {
+export default function EditTrayFormik({ tray, onSuccess }: any) {
 	const { loading, editTraySubmissionHandler } = useEditTray();
 	return (
 		<div>
@@ -18,7 +18,7 @@ export default function EditTrayFormik({ tray }: any) {
 				initialValues={tray}
 				validationSchema={addTraySchema}
 				onSubmit={(values) =>
-					editTraySubmissionHandler(values, tray.id)
+					editTraySubmissionHandler(values, tray.id, onSuccess)
 				}>
 				{({
 					handleSubmit,
