@@ -1,4 +1,4 @@
-import { Button, TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import {
 	createUserWithEmailAndPassword,
 	getAuth,
@@ -29,20 +29,30 @@ export default function SignUp() {
 	};
 
 	return (
-		<div>
+		<Box
+			sx={{
+				display: "flex",
+				flexDirection: "column",
+				justifyContent: "center",
+				alignItem: "center",
+				width: "50%",
+				margin: "auto",
+				gap: "15px",
+				marginTop: "15%",
+			}}>
 			<h3>Sign Up</h3>
 			<TextField
 				variant="outlined"
 				label="Email"
-				onChange={(event) => setEmail(event.target.value)}></TextField>
+				onChange={(event) => setEmail(event.target.value)}
+			/>
 			<TextField
 				variant="outlined"
 				label="Password"
-				onChange={(event) =>
-					setPassword(event.target.value)
-				}></TextField>
+				onChange={(event) => setPassword(event.target.value)}
+			/>
 			<p>{error ? error : null}</p>
 			<Button onClick={register}>Create Account</Button>
-		</div>
+		</Box>
 	);
 }
