@@ -12,6 +12,12 @@ export default function Doctors() {
 	const doctors = useAtom(doctorsAtom);
 	const [addDoctorOpen, setAddDoctorOpen] = useState(false);
 	const [activeDoctor, setActiveDoctor] = useState({});
+	const [addSuccess, setAddSuccess] = useState(false);
+
+	const onAddSuccess = () => {
+		setAddSuccess(false);
+		setAddDoctorOpen(false);
+	};
 
 	const handleModalClose = () => setAddDoctorOpen(false);
 	const setDoctor = (doctor: any) => setActiveDoctor(doctor);
@@ -24,6 +30,7 @@ export default function Doctors() {
 				<AddDoctorModal
 					open={addDoctorOpen}
 					handleClose={handleModalClose}
+					onSuccess={onAddSuccess}
 				/>
 			) : null}
 			<SpeedDial
@@ -37,6 +44,11 @@ export default function Doctors() {
 					onClick={() => setAddDoctorOpen(true)}
 				/>
 			</SpeedDial>
+			<SimpleSnackBar
+				open={addSuccess}
+				handleClose={() => setAddSuccess(false)}
+				message="Doctor added successfully!"
+			/>
 		</div>
 	);
 }

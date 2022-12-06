@@ -10,12 +10,7 @@ import { useState } from "react";
 import SimpleSnackBar from "../../common/notifications/SimpleSnackBar";
 import AddDoctorFormik from "./AddDoctorFormik";
 
-export default function AddDoctorModal({ open, handleClose }: any) {
-	const [notification, setNotification] = useState(false);
-	const onSuccessHandler = () => {
-		setNotification(true);
-	};
-
+export default function AddDoctorModal({ open, handleClose, onSuccess }: any) {
 	return (
 		<Dialog open={open} onClose={handleClose}>
 			<DialogTitle>Add a New Doctor</DialogTitle>
@@ -24,18 +19,11 @@ export default function AddDoctorModal({ open, handleClose }: any) {
 					To add a doctor, fill in the required information and click
 					"Add Doctor"
 				</DialogContentText>
-				<AddDoctorFormik onSuccess={onSuccessHandler} />
+				<AddDoctorFormik onSuccess={onSuccess} />
 				<DialogActions>
 					<Button onClick={() => handleClose()}>Cancel</Button>
 				</DialogActions>
 			</DialogContent>
-			{notification ? (
-				<SimpleSnackBar
-					open={notification}
-					handleClose={() => setNotification(false)}
-					message="Doctor added successfully!"
-				/>
-			) : null}
 		</Dialog>
 	);
 }

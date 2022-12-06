@@ -12,14 +12,15 @@ import addDoctorSchema, {
 import useAddDoctorSubmission from "./useAddDoctorSubmission";
 
 export default function AddDoctorFormik({ onSuccess }: any) {
-	const { addDoctorSubmissionHandler, loading } =
-		useAddDoctorSubmission(onSuccess);
+	const { addDoctorSubmissionHandler, loading } = useAddDoctorSubmission();
 	return (
 		<div>
 			<Formik
 				initialValues={addDoctorInitialValues}
 				validationSchema={addDoctorSchema}
-				onSubmit={addDoctorSubmissionHandler}>
+				onSubmit={(values) =>
+					addDoctorSubmissionHandler(values, onSuccess)
+				}>
 				{({
 					handleSubmit,
 					handleChange,
@@ -124,10 +125,9 @@ export default function AddDoctorFormik({ onSuccess }: any) {
 								type="submit"
 								onClick={() => handleSubmit}
 								disabled={loading}>
-								Add Doctor
+								{loading ? <CircularProgress /> : "Add Doctor"}
 							</Button>
 						</Box>
-						{loading ? <CircularProgress /> : null}
 					</Form>
 				)}
 			</Formik>

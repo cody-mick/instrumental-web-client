@@ -31,24 +31,44 @@ export default function TrayContents({ instruments, supplies }: any) {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{instruments.map((i: any) => (
-						<TableRow key={i.name}>
-							<TableCell sx={{ width: "150px" }}>
-								{i.code}
-							</TableCell>
-							<TableCell>{i.name}</TableCell>
-							<TableCell align="right">{i.quantity}</TableCell>
-						</TableRow>
-					))}
-					{supplies.map((s: any) => (
-						<TableRow key={s.name}>
-							<TableCell sx={{ width: "150px" }}>
-								{s.code}
-							</TableCell>
-							<TableCell>{s.name}</TableCell>
-							<TableCell align="right">{s.quantity}</TableCell>
-						</TableRow>
-					))}
+					{instruments &&
+						instruments.map((i: any) => (
+							<TableRow key={i.name}>
+								<TableCell sx={{ width: "150px" }}>
+									{i.code}
+								</TableCell>
+								<TableCell>{i.name}</TableCell>
+								<TableCell align="right">
+									{i.quantity}
+								</TableCell>
+							</TableRow>
+						))}
+				</TableBody>
+			</Table>
+			<Divider textAlign="left" sx={{ fontSize: 16, marginTop: "15px" }}>
+				<Typography>Supplies</Typography>
+			</Divider>
+			<Table>
+				<TableHead>
+					<TableRow>
+						<TableCell>Code</TableCell>
+						<TableCell>Name</TableCell>
+						<TableCell align="right">Quantity</TableCell>
+					</TableRow>
+				</TableHead>
+				<TableBody>
+					{supplies &&
+						supplies.map((s: any) => (
+							<TableRow key={s.name}>
+								<TableCell sx={{ width: "150px" }}>
+									{s.code}
+								</TableCell>
+								<TableCell>{s.name}</TableCell>
+								<TableCell align="right">
+									{s.quantity}
+								</TableCell>
+							</TableRow>
+						))}
 				</TableBody>
 			</Table>
 		</Box>
