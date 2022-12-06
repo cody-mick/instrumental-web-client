@@ -1,11 +1,9 @@
 import { Button, CircularProgress, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { FieldArray, Form, Formik } from "formik";
-import { ArraySchema } from "yup";
 import addCaseSchema, {
 	addCaseInitialValues,
 } from "../../../utilities/formValidationSchemas/addCaseSchema";
-import MultiAdd from "../../common/form-inputs/MultiAdd";
 import useAddCaseFormSubmission from "./useAddCaseFormSubmission";
 
 export default function AddCaseFormik({ onSuccess }: any) {
