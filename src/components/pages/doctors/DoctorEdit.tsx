@@ -5,13 +5,11 @@ import { db } from "../../../firebase";
 import SimpleSnackBar from "../../common/notifications/SimpleSnackBar";
 
 export default function DoctorEdit({ activeDoctor, onCancel, onSuccess }: any) {
-	console.log("ACTIVE DOCTOR: ", activeDoctor);
 	const [firstName, setFirstName] = useState(activeDoctor.firstName);
 	const [lastName, setLastName] = useState(activeDoctor.lastName);
 	const [specialty, setSpecialty] = useState(activeDoctor.specialty);
 	const [dominantHand, setDominantHand] = useState(activeDoctor.dominantHand);
 	const [gloveSize, setGloveSize] = useState(activeDoctor.gloveSize);
-	const [notification, setNotification] = useState(false);
 
 	const updateDoctor = async (
 		firstName: string,
@@ -30,7 +28,7 @@ export default function DoctorEdit({ activeDoctor, onCancel, onSuccess }: any) {
 				specialty: specialty,
 				gloveSize: gloveSize,
 			});
-			setNotification(true);
+			onSuccess();
 		} catch (err) {
 			console.error(err);
 		}
@@ -42,8 +40,7 @@ export default function DoctorEdit({ activeDoctor, onCancel, onSuccess }: any) {
 				display: "flex",
 				flexDirection: "column",
 				gap: "10px",
-			}}
-		>
+			}}>
 			<TextField
 				label="First Name"
 				value={firstName}
@@ -86,21 +83,12 @@ export default function DoctorEdit({ activeDoctor, onCancel, onSuccess }: any) {
 						gloveSize,
 						activeDoctor.id
 					)
-				}
-			>
+				}>
 				Save
 			</Button>
 			<Button variant="contained" onClick={onCancel} color="secondary">
 				Cancel
 			</Button>
-			{notification ? (
-				<SimpleSnackBar
-					open={notification}
-					handleClose={() => setNotification(false)}
-					message="Doctor updated successfully!"
-					color="success"
-				/>
-			) : null}
 		</Box>
 	);
 }

@@ -10,8 +10,7 @@ export default function DoctorInfo({ doctor }: any) {
 				marginTop: "30px",
 				width: 700,
 				padding: "15px",
-			}}
-		>
+			}}>
 			<Grid container spacing={2}>
 				<Grid item xs={6}>
 					<Typography>
@@ -37,6 +36,11 @@ export default function DoctorInfo({ doctor }: any) {
 				</Grid>
 				<Grid item xs={6}>
 					<Typography>Notes:</Typography>
+					{doctor.notes
+						? doctor.notes.map((note: any) => (
+								<Typography> - {note}</Typography>
+						  ))
+						: "No notes to show"}
 				</Grid>
 			</Grid>
 		</Paper>

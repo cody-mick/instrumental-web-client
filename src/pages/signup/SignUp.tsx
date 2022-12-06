@@ -10,30 +10,6 @@ import { UserAuth } from "../../contexts/AuthContext";
 import { auth } from "../../firebase";
 
 export default function SignUp() {
-	// const [registerEmail, setRegisterEmail] = useState("");
-	// const [registerPassword, setRegisterPassword] = useState("");
-	// const [user, setUser] = useState({});
-	// onAuthStateChanged(auth, (currentUser) => {
-	// 	//@ts-ignore
-	// 	setUser(currentUser);
-	// });
-	// const [loginEmail, setLoginEmail] = useState("");
-	// const [loginPassword, setLoginPassword] = useState("");
-	// const register = async () => {
-	// 	try {
-	// 		const user = await createUserWithEmailAndPassword(
-	// 			auth,
-	// 			registerEmail,
-	// 			registerPassword
-	// 		);
-	// 		console.log(user);
-	// 	} catch (err: any) {
-	// 		console.log("An error has occurred: ", err.message);
-	// 	}
-	// };
-	// const login = async () => {};
-	// const logout = async () => {};
-
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
@@ -62,7 +38,9 @@ export default function SignUp() {
 			<TextField
 				variant="outlined"
 				label="Password"
-				onChange={(event) => setPassword(event.target.value)}></TextField>
+				onChange={(event) =>
+					setPassword(event.target.value)
+				}></TextField>
 			<p>{error ? error : null}</p>
 			<Button onClick={register}>Create Account</Button>
 		</div>

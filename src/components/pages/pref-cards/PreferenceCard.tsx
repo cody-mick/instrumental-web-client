@@ -12,8 +12,6 @@ export default function PreferenceCard() {
 	const doctor = doctors[0].find((d: any) => d.id === params.doctorId);
 	const procedure = cases[0].find((c: any) => c.caseId === params.caseId);
 
-	console.log(doctor, procedure);
-
 	return (
 		<div>
 			<DoctorInfo doctor={doctor} />

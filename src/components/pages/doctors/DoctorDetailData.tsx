@@ -1,30 +1,33 @@
-import { async } from "@firebase/util";
-import { Alert, AlertTitle, Button } from "@mui/material";
-import { deleteDoc, doc } from "firebase/firestore";
+import { Button, Typography } from "@mui/material";
+import { Box } from "@mui/system";
 import { useState } from "react";
-import { db } from "../../../firebase";
 import SimpleSnackBar from "../../common/notifications/SimpleSnackBar";
 import DoctorDeleteWarning from "./DoctorDeleteWarning";
-import DoctorEdit from "./DoctorEdit";
+import DoctorEditModal from "./DoctorEditModal";
 
 export default function DoctorDetailData({ doctor }: any) {
-	const [editDocInfo, setEditDocInfo] = useState(false);
+	const [doctorEdit, setDoctorEdit] = useState(false);
 	const [deleteDoctor, setDeleteDoctor] = useState(false);
-	const cancelEdit = () => {
-		setEditDocInfo(false);
+	const [deleteSuccess, setDeleteSuccess] = useState(false);
+	const [editSuccess, setEditSuccess] = useState(false);
+	const handleEditClose = () => {
+		setDoctorEdit(false);
 	};
 	const cancelDelete = () => {
 		setDeleteDoctor(false);
 	};
-	const [notification, setNotification] = useState(false);
-	const onSuccess = () => {
+	const onDeleteSuccess = () => {
 		setDeleteDoctor(false);
-		setNotification(true);
+		setDeleteSuccess(true);
+	};
+	const onEditSuccess = () => {
+		setDoctorEdit(false);
+		setEditSuccess(true);
 	};
 
 	return (
 		<div>
-			{!editDocInfo ? (
+			{!doctorEdit ? (
 				<div>
 					<p style={{ fontSize: 24 }}>
 						{`${doctor.firstName} ${doctor.lastName}`}
@@ -35,9 +38,20 @@ export default function DoctorDetailData({ doctor }: any) {
 					{doctor.musicPreference ? (
 						<p>Music Preference: {doctor.musicPreference}</p>
 					) : null}
+					{doctor.notes
+						? doctor.notes.map((note: any) => (
+								<Box
+									sx={{
+										marginBottom: "15px",
+									}}>
+									<Typography>Notes:</Typography>
+									<Typography> - {note}</Typography>
+								</Box>
+						  ))
+						: null}
 					<Button
 						variant="contained"
-						onClick={() => setEditDocInfo(true)}>
+						onClick={() => setDoctorEdit(true)}>
 						Edit Information
 					</Button>
 					<Button
@@ -47,10 +61,10 @@ export default function DoctorDetailData({ doctor }: any) {
 						onClick={() => setDeleteDoctor(true)}>
 						Delete
 					</Button>
-					{editDocInfo ? (
+					{doctorEdit ? (
 						<Button
 							variant="contained"
-							onClick={() => setEditDocInfo(false)}
+							onClick={() => setDoctorEdit(false)}
 							color="secondary">
 							Cancel
 						</Button>
@@ -58,10 +72,11 @@ export default function DoctorDetailData({ doctor }: any) {
 				</div>
 			) : (
 				<div>
-					<DoctorEdit
-						activeDoctor={doctor}
-						onCancel={cancelEdit}
-						onSuccess={() => setEditDocInfo(false)}
+					<DoctorEditModal
+						open={doctorEdit}
+						handleClose={handleEditClose}
+						doctor={doctor}
+						onSuccess={onEditSuccess}
 					/>
 				</div>
 			)}
@@ -70,16 +85,19 @@ export default function DoctorDetailData({ doctor }: any) {
 					open={deleteDoctor}
 					doctor={doctor}
 					onCancel={cancelDelete}
-					onSuccess={onSuccess}
+					onSuccess={onDeleteSuccess}
 				/>
 			) : null}
-			{notification ? (
-				<SimpleSnackBar
-					open={notification}
-					handleClose={() => setNotification(false)}
-					message="Doctor deleted sucessfully!"
-				/>
-			) : null}
+			<SimpleSnackBar
+				open={deleteSuccess}
+				handleClose={() => setDeleteSuccess(false)}
+				message="Doctor deleted sucessfully!"
+			/>
+			<SimpleSnackBar
+				open={editSuccess}
+				handleClose={() => setEditSuccess(false)}
+				message="Doctor updated successfully!"
+			/>
 		</div>
 	);
 }

@@ -12,7 +12,6 @@ const useDoctorsStore = create<DoctorState>((set) => ({
 	fetchDoctors: async () => {
 		const querySnapshot = await getDocs(collection(db, "doctors"));
 		querySnapshot.forEach((doc) => {
-			console.log("DOCTORS FROM HOOK: ", doc.data());
 			set({ doctors: doc.data() });
 		});
 	},

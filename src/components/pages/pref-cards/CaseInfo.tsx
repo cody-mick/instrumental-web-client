@@ -25,6 +25,11 @@ export default function CaseInfo({ procedure }: any) {
 				</Grid>
 				<Grid item xs={12}>
 					Notes:
+					{procedure.notes
+						? procedure.notes.map((note: any) => (
+								<Typography> - {note}</Typography>
+						  ))
+						: "No notes to show"}
 				</Grid>
 				<Grid item xs={12}>
 					Some sample case notes

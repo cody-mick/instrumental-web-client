@@ -14,8 +14,8 @@ const addDoctorSchema = object({
 	specialty: string().required("This field cannot be blank"),
 	dominantHand: string().required("This field cannot be blank"),
 	gloveSize: number(),
-	// musicPreference: string(),
-	// notes: array().of(string()),
+	musicPreference: string(),
+	notes: array().of(string()),
 });
 
 export default addDoctorSchema;

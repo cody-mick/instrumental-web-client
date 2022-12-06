@@ -14,7 +14,6 @@ const addDoctor = async (
 			gloveSize: gloveSize,
 			specialty: specialty,
 		});
-		console.log("Doctor created with ID: ", docRef.id);
 		setNewDocName("");
 		setNewDocSpecialty("");
 		setNewDocDominantHand("");

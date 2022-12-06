@@ -10,7 +10,6 @@ export default function CaseDetail() {
 	let params = useParams();
 	const procedure = cases[0].find((c: any) => c.caseId === params.caseId);
 
-	console.log("PROCEDURE: ", procedure);
 	return (
 		<Card
 			sx={{
@@ -18,14 +17,12 @@ export default function CaseDetail() {
 				maxWidth: 650,
 				margin: "auto",
 				marginTop: "15px",
-			}}
-		>
+			}}>
 			<CardContent>
 				<Typography
 					sx={{ fontSize: 14 }}
 					color="text.secondary"
-					gutterBottom
-				>
+					gutterBottom>
 					Case {procedure.caseId}
 				</Typography>
 				<Typography variant="h5" component="div">
