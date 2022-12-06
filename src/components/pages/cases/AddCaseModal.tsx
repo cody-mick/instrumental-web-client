@@ -19,7 +19,11 @@ export default function AddCaseModal({ open, handleClose, onSuccess }: any) {
 					below and press "Submit"
 				</DialogContentText>
 				<AddCaseFormik onSuccess={onSuccess} />
-				<Button onClick={handleClose} color="secondary">
+				<Button
+					fullWidth
+					onClick={handleClose}
+					color="secondary"
+					sx={{ marginTop: "15px" }}>
 					Cancel
 				</Button>
 			</DialogContent>

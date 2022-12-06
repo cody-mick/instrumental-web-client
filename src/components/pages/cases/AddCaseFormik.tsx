@@ -77,13 +77,19 @@ export default function AddCaseFormik({ onSuccess }: any) {
 							<FieldArray
 								name="instrumentation"
 								render={(arrayHelpers) => (
-									<Box>
+									<Box
+										sx={{
+											display: "flex",
+											flexDirection: "column",
+											gap: "15px",
+										}}>
 										{values.instrumentation &&
 										values.instrumentation.length > 0 ? (
 											values.instrumentation.map(
 												(instrument, index) => (
 													<Box key={index}>
 														<TextField
+															fullWidth
 															name={`instrumentation[${index}]`}
 															label="Tray"
 															value={instrument}
@@ -143,13 +149,19 @@ export default function AddCaseFormik({ onSuccess }: any) {
 							<FieldArray
 								name="equipment"
 								render={(arrayHelpers) => (
-									<Box>
+									<Box
+										sx={{
+											display: "flex",
+											flexDirection: "column",
+											gap: "15px",
+										}}>
 										{values.equipment &&
 										values.equipment.length > 0 ? (
 											values.equipment.map(
 												(equipment, index) => (
 													<Box key={index}>
 														<TextField
+															fullWidth
 															name={`equipment[${index}]`}
 															label="Equipment"
 															value={equipment}
@@ -195,13 +207,19 @@ export default function AddCaseFormik({ onSuccess }: any) {
 							<FieldArray
 								name="supplies"
 								render={(arrayHelpers) => (
-									<Box>
+									<Box
+										sx={{
+											display: "flex",
+											flexDirection: "column",
+											gap: "15px",
+										}}>
 										{values.supplies &&
 										values.supplies.length > 0 ? (
 											values.supplies.map(
 												(supply, index) => (
 													<Box key={index}>
 														<TextField
+															fullWidth
 															name={`supplies[${index}]`}
 															label="Supply"
 															value={supply}
@@ -247,13 +265,19 @@ export default function AddCaseFormik({ onSuccess }: any) {
 							<FieldArray
 								name="medications"
 								render={(arrayHelpers) => (
-									<Box>
+									<Box
+										sx={{
+											display: "flex",
+											flexDirection: "column",
+											gap: "15px",
+										}}>
 										{values.medications &&
 											values.medications.length > 0 &&
 											values.medications.map(
 												(medication, index) => (
 													<Box key={index}>
 														<TextField
+															fullWidth
 															name={`medications[${index}]`}
 															label="Medication"
 															value={medication}
@@ -287,13 +311,19 @@ export default function AddCaseFormik({ onSuccess }: any) {
 							<FieldArray
 								name="dressings"
 								render={(arrayHelpers) => (
-									<Box>
+									<Box
+										sx={{
+											display: "flex",
+											flexDirection: "column",
+											gap: "15px",
+										}}>
 										{values.dressings &&
 											values.dressings.length > 0 &&
 											values.dressings.map(
 												(dressing, index) => (
 													<Box key={index}>
 														<TextField
+															fullWidth
 															name={`dressings[${index}]`}
 															label="Dressing"
 															value={dressing}
@@ -327,13 +357,19 @@ export default function AddCaseFormik({ onSuccess }: any) {
 							<FieldArray
 								name="skinPrep"
 								render={(arrayHelpers) => (
-									<Box>
+									<Box
+										sx={{
+											display: "flex",
+											flexDirection: "column",
+											gap: "15px",
+										}}>
 										{values.skinPrep &&
 											values.skinPrep.length > 0 &&
 											values.skinPrep.map(
 												(skinPrep, index) => (
 													<Box key={index}>
 														<TextField
+															fullWidth
 															name={`skinPrep[${index}]`}
 															label="Prep Item"
 															value={skinPrep}
@@ -367,10 +403,20 @@ export default function AddCaseFormik({ onSuccess }: any) {
 							<FieldArray
 								name="sutureUsage"
 								render={(arrayHelpers) => (
-									<Box>
+									<Box
+										sx={{
+											display: "flex",
+											flexDirection: "column",
+											gap: "15px",
+										}}>
 										{values.sutureUsage.map(
 											(su: any, index) => (
-												<Box key={index}>
+												<Box
+													key={index}
+													sx={{
+														display: "flex",
+														gap: "15px",
+													}}>
 													<TextField
 														name={`sutureUsage[${index}].area`}
 														value={su.area}
@@ -412,12 +458,18 @@ export default function AddCaseFormik({ onSuccess }: any) {
 							<FieldArray
 								name="notes"
 								render={(arrayHelpers) => (
-									<Box>
+									<Box
+										sx={{
+											display: "flex",
+											flexDirection: "column",
+											gap: "15px",
+										}}>
 										{values.notes &&
 											values.notes.length > 0 &&
 											values.notes.map((note, index) => (
 												<Box key={index}>
 													<TextField
+														fullWidth
 														name={`notes[${index}]`}
 														label="Note"
 														value={note}

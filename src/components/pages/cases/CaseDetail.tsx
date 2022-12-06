@@ -1,4 +1,6 @@
+import { Toys } from "@mui/icons-material";
 import { Card, CardContent, Chip, Divider, Typography } from "@mui/material";
+import { Box } from "@mui/system";
 import { useAtom } from "jotai";
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
@@ -75,8 +77,16 @@ export default function CaseDetail() {
 				<Divider>
 					<Chip label="SUTURE AND USAGE" variant="outlined" />
 				</Divider>
-				{Object.keys(procedure.sutureUsage).map((s) => (
-					<Typography>{`${s}: ${procedure.sutureUsage[s]}`}</Typography>
+
+				{procedure.sutureUsage.map((su: any) => (
+					<Box
+						sx={{
+							display: "flex",
+							gap: "15px",
+						}}>
+						<Typography>{su.area}: </Typography>
+						<Typography>{su.suture}</Typography>
+					</Box>
 				))}
 			</CardContent>
 		</Card>
