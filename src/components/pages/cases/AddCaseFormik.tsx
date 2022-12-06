@@ -31,6 +31,7 @@ export default function AddCaseFormik({ onSuccess }: any) {
 								display: "flex",
 								flexDirection: "column",
 								gap: "15px",
+								marginTop: "15px",
 							}}>
 							<TextField
 								label="Case ID"
